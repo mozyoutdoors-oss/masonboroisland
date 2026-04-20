@@ -178,6 +178,14 @@ tailwind.config = {
   @media (min-width: 768px) {
     .zone-label { font-size: 11px; padding: 0.6rem 1.1rem; }
   }
+  /* Mobile: pills at TOP of scene, out of the way of the letterboxed artwork */
+  @media (max-width: 768px) {
+    .journey-zone {
+      align-items: flex-start;
+      padding-top: 0.75rem;
+      padding-bottom: 0;
+    }
+  }
 
   /* Paper grain */
   .paper-grain::before {
