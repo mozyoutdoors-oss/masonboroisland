@@ -421,6 +421,15 @@ tailwind.config = {
           <!-- Weathered highlight -->
           <path d="M 0 12 L 40 12 L 40 14 L 0 14 Z" fill="#dcc699" opacity="0.15"/>
         </g>
+
+        <!-- Human: standing at the dock (about to launch) -->
+        <g transform="translate(470 398) scale(0.38)">
+          <g class="figure-standing">
+            <circle cx="15" cy="10" r="4" fill="#1c1a17"/>
+            <path d="M15 14 L15 35 M15 18 L5 25 M15 18 L25 25 M15 35 L10 55 M15 35 L20 55" stroke="#1c1a17" stroke-width="2" fill="none"/>
+            <path d="M15 14 L15 35 L20 55 L22 55 L17 35 Z" fill="#1c1a17" opacity="0.3"/>
+          </g>
+        </g>
       </g>
 
       <!-- ═══ WATERWAY (middle third, 533-1066) ═══ -->
@@ -491,12 +500,6 @@ tailwind.config = {
         <!-- Organic tree canopy silhouette above the horizon -->
         <path d="M 1066 340 Q 1100 322 1140 330 Q 1180 315 1220 322 Q 1260 308 1300 318 Q 1340 302 1380 315 Q 1420 298 1460 312 Q 1500 305 1540 315 Q 1570 308 1600 318 L 1600 340 Z"
               fill="#1c2f27"/>
-        <!-- Taller pine spires -->
-        <g fill="#15241d">
-          <path d="M 1200 312 L 1208 272 L 1216 312 Z"/>
-          <path d="M 1330 304 L 1340 268 L 1350 304 Z"/>
-          <path d="M 1470 302 L 1480 264 L 1490 302 Z"/>
-        </g>
         <!-- Windswept shrubbery along the dune line -->
         <g fill="#1a2d24" opacity="0.85">
           <path d="M 1100 380 Q 1120 330 1160 350 Q 1140 385 1100 380"/>
@@ -610,6 +613,25 @@ tailwind.config = {
             <path d="M12 12 Q15 8 20 12 L15 18 Z" fill="#c4a66f"/>
           </g>
         </g>
+        <!-- Human: walking the shoreline down-island (right side, heading right) -->
+        <g transform="translate(1455 500) scale(0.55)">
+          <g class="figure-walking">
+            <circle cx="22" cy="10" r="4" fill="#1c1a17"/>
+            <path d="M20 14 Q18 25 20 35 M20 18 L12 28 M20 18 L28 28 M20 35 L15 55 M20 35 L30 52" stroke="#1c1a17" stroke-width="2" fill="none"/>
+            <path d="M12 28 L10 28 M30 52 L34 52" stroke="#1c1a17" stroke-width="2"/>
+            <path d="M20 14 Q18 25 20 35 L15 55 L12 55 L18 35 Z" fill="#1c1a17" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Human: crouching / shelling near driftwood on the beach -->
+        <g transform="translate(1205 490) scale(0.5)">
+          <g class="figure-crouching">
+            <circle cx="25" cy="15" r="4" fill="#1c1a17"/>
+            <path d="M25 19 L18 25 L22 35 M18 25 L10 25 M22 35 L10 38 M22 35 L30 38" stroke="#1c1a17" stroke-width="2" fill="none"/>
+            <path d="M18 25 L22 35 L30 38 L32 38 L24 35 Z" fill="#1c1a17" opacity="0.3"/>
+          </g>
+        </g>
+
         <!-- Camp: A-frame tent tucked between dune and sea oats (raised to clear zone label pill) -->
         <g class="tent" transform="translate(1310 418)">
           <!-- Back face -->
@@ -621,6 +643,15 @@ tailwind.config = {
           <!-- Stake lines -->
           <line x1="4" y1="28" x2="0" y2="32" stroke="#1c1a17" stroke-width="0.5" opacity="0.5"/>
           <line x1="44" y1="28" x2="48" y2="32" stroke="#1c1a17" stroke-width="0.5" opacity="0.5"/>
+        </g>
+
+        <!-- Human: standing near the tent (camp tender) -->
+        <g transform="translate(1370 418) scale(0.5)">
+          <g class="figure-standing">
+            <circle cx="15" cy="10" r="4" fill="#1c1a17"/>
+            <path d="M15 14 L15 35 M15 18 L5 25 M15 18 L25 25 M15 35 L10 55 M15 35 L20 55" stroke="#1c1a17" stroke-width="2" fill="none"/>
+            <path d="M15 14 L15 35 L20 55 L22 55 L17 35 Z" fill="#1c1a17" opacity="0.3"/>
+          </g>
         </g>
       </g>
     </svg>
