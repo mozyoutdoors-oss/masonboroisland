@@ -839,7 +839,10 @@ function buildChecklist(launch, launchCfg, weather, tides, vessel, tripType) {
   if (tripType === 'overnight') {
     list.push({ text: 'Tent, pad, bag rated for the forecast low', critical: true });
     list.push({ text: 'Headlamp per person (plus spare batteries)', critical: true });
-    list.push({ text: 'Contained stove — no ground fires allowed', critical: true });
+    list.push({ text: 'Cook setup — fire pan (3″+ sides) OR camp stove. Fires allowed on open sand 10+ ft from vegetation per NC DEQ.', critical: true });
+    list.push({ text: 'Firewood + kindling + fire starter if building a fire (nothing to gather on-island)', critical: false });
+    list.push({ text: 'Fireproof container for coals — best practice is carry-out, otherwise bury lightly in sand', critical: true });
+    list.push({ text: 'Max 2 consecutive nights; all personal property off the Reserve within 48 hours', critical: true });
     list.push({ text: 'All food in sealed containers; bugs and crabs are real' });
   }
   if (launch === 'trails-end' && vessel === 'kayak') list.push({ text: 'Arrive early on weekends — Trails End parking fills by 9 am in season' });
