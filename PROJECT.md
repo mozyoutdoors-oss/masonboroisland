@@ -180,9 +180,45 @@ This is because CSS `transform` on an SVG element *replaces* the `transform="tra
 | File | Purpose |
 |---|---|
 | `index.html` | Main page |
+| `plan.html` | **Trip Planner** — date + launch point → live briefing |
 | `svg-test.html` | Gemini SVG pack evaluation — all approved assets live here |
 | `PROJECT.md` | This file |
 | `DEPLOY.md` | Instructions to put it online |
+
+## Trip Planner (`plan.html`)
+
+Standalone tool for building a day-specific trip briefing.
+
+**Inputs:**
+- Date (up to 14 days out)
+- Launch point (Trails End / Wrightsville / Carolina Beach Inlet / Charter)
+- Vessel (kayak-SUP / small boat / charter)
+- Trip type (day / overnight)
+
+**What it does:**
+- Picks the correct NOAA tide station based on launch point:
+  - Trails End + Wrightsville + Charter → `8658163` (Wrightsville Beach)
+  - Carolina Beach Inlet → `8658715` (Federal Point)
+- Pulls Open-Meteo weather for the launch coordinates (different lat/lon per launch)
+- Computes a **Go / Caution / No-Go verdict** (scored 0–100 with reasons)
+- Extracts best slack-tide crossing windows in daylight
+- Builds dynamic safety flags (thunderstorms, high wind, fog, king tide, cold water, launch-specific hazards)
+- Generates a dynamic checklist tuned to conditions (cold-day adds layering items, hot day adds electrolytes, overnight adds camping gear, Carolina Beach adds VHF radio, charter adds pickup confirmation, etc.)
+- Overnight mode surfaces moon phase + next meteor shower + link to main-page rocket launches
+
+**Key files/sections:**
+- `const LAUNCHES = {...}` — per-launch config (NOAA station, coords, paddle distance, vessels, notes)
+- `computeVerdict()` — scoring algorithm with thresholds
+- `buildFlags()` — safety flag logic
+- `buildChecklist()` — condition-aware checklist
+- `analyzeCrossingWindow()` — slack tide detection
+
+**Future work:**
+- Surface water-temperature data (NOAA has it) for more accurate hypothermia warnings
+- Pull from Open-Meteo's marine endpoint for wave-height data (currently inferred from wind)
+- Launch-point-specific photo headers in the briefing output
+- Save/share briefing as a link (URL params already supported via form state, just needs URL sync)
+- Dedicated evergreen pages for each launch point (map, photos, directions)
 
 ## Related projects
 

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan Your Trip &mdash; Masonboro Island Field Guide</title>
+<meta name="description" content="Build a safety briefing for a specific day and launch point. Live NOAA tide predictions, weather forecast, launch-specific hazards, and a go/caution/no-go verdict for visiting Masonboro Island.">
+<meta property="og:title" content="Plan Your Masonboro Trip">
+<meta property="og:description" content="Pick a date, pick a launch. Get a day-of briefing with live tide, weather, and safety flags.">
+<meta property="og:image" content="https://masonboroisland.org/images/hero-masonboro.jpg">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://masonboroisland.org/plan.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        "mb-cream":"#f5f0e8","mb-paper":"#ede7db","mb-sand":"#e8dcc1",
+        "mb-dark":"#0f2e3d","mb-teal":"#1a4f5e","mb-sea":"#2c6b7d",
+        "mb-accent":"#d97b2b","mb-accent-light":"#f0a050",
+        "mb-ink":"#1c1a17","mb-ink-mid":"#4a4640","mb-ink-light":"#7a756d","mb-rule":"#d5cfc5",
+        "mb-good":"#4a7a3f","mb-warn":"#b8651a","mb-bad":"#a03520"
+      },
+      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+      fontFamily: { headline: ["Public Sans"], body: ["Public Sans"], label: ["Space Grotesk"] }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  html { scroll-behavior: smooth; }
+
+  .paper-grain::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none; z-index: 1;
+  }
+
+  /* Launch option cards */
+  .launch-card {
+    display: block; cursor: pointer;
+    border: 1.5px solid #d5cfc5;
+    border-radius: 0.375rem;
+    padding: 1rem 1.25rem;
+    transition: all 0.2s ease;
+    background: white;
+  }
+  .launch-card:hover { border-color: #d97b2b; background: #fdf9f2; }
+  .launch-card input { position: absolute; opacity: 0; pointer-events: none; }
+  .launch-card.selected {
+    border-color: #d97b2b;
+    background: #fef3e0;
+    box-shadow: 0 0 0 3px rgba(217, 123, 43, 0.15);
+  }
+  .launch-card .launch-head {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.35rem;
+  }
+  .launch-card .launch-name {
+    font-family: "Public Sans", sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    color: #0f2e3d; letter-spacing: -0.01em;
+  }
+  .launch-card .launch-meta {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #7a756d;
+    margin-left: auto;
+  }
+  .launch-card .launch-desc {
+    font-size: 0.8125rem; line-height: 1.5; color: #4a4640;
+  }
+
+  /* Segmented control (vessel, trip type) */
+  .seg {
+    display: inline-flex; flex-wrap: wrap;
+    background: white;
+    border: 1.5px solid #d5cfc5;
+    border-radius: 999px;
+    padding: 0.25rem;
+    gap: 0.25rem;
+  }
+  .seg button {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #7a756d;
+    background: transparent;
+    border: 0;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .seg button:hover { color: #0f2e3d; }
+  .seg button.active {
+    background: #0f2e3d;
+    color: #f5f0e8;
+  }
+
+  /* Briefing blocks */
+  .briefing-card {
+    background: white;
+    border: 1px solid #d5cfc5;
+    border-radius: 0.375rem;
+    padding: 1.5rem;
+  }
+  @media (min-width: 768px) { .briefing-card { padding: 2rem; } }
+
+  .data-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: #7a756d; margin-bottom: 0.5rem;
+  }
+
+  .verdict-card {
+    padding: 2rem; border-radius: 0.5rem;
+    border-width: 2px; border-style: solid;
+  }
+  .verdict-go    { background: #ecf5e6; border-color: #4a7a3f; }
+  .verdict-warn  { background: #fdf0dc; border-color: #b8651a; }
+  .verdict-bad   { background: #fbe5e0; border-color: #a03520; }
+
+  .verdict-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .verdict-badge.go   { background: #4a7a3f; }
+  .verdict-badge.warn { background: #b8651a; }
+  .verdict-badge.bad  { background: #a03520; }
+
+  .flag-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.25rem;
+    background: white;
+    border-left: 3px solid #d5cfc5;
+    margin-bottom: 0.5rem;
+  }
+  .flag-item.warn { border-color: #b8651a; background: #fdf5e6; }
+  .flag-item.bad  { border-color: #a03520; background: #fdede8; }
+  .flag-item.good { border-color: #4a7a3f; background: #f0f5ea; }
+  .flag-item .material-symbols-outlined { flex-shrink: 0; margin-top: 0.05rem; }
+
+  .tide-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #ede7db;
+  }
+  .tide-row:last-child { border-bottom: none; }
+
+  .tide-pill {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .tide-pill.high  { background: #dbeafe; color: #1e40af; }
+  .tide-pill.low   { background: #fef3c7; color: #92400e; }
+  .tide-pill.king  { background: #fbe5e0; color: #a03520; }
+
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.45rem 0;
+    font-size: 0.9375rem; line-height: 1.55;
+    color: #4a4640;
+  }
+  .checklist li::before {
+    content: ''; flex-shrink: 0;
+    width: 11px; height: 11px;
+    border: 1.5px solid #d97b2b;
+    border-radius: 2px;
+    margin-top: 0.4rem;
+  }
+  .checklist li.critical { color: #1c1a17; font-weight: 500; }
+  .checklist li.critical::before {
+    border-color: #a03520; background: #a03520;
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(180deg, rgba(245,240,232,0) 0%, #f5f0e8 85%),
+      linear-gradient(180deg, #9bc3d9 0%, #c2d9e2 40%, #e4d4b4 70%, #cfb886 100%);
+  }
+</style>
+</head>
+<body class="bg-mb-cream text-mb-ink font-body">
+
+<!-- ══════════ NAV ══════════ -->
+<header class="sticky top-0 z-50 bg-mb-cream/85 backdrop-blur-xl border-b border-mb-paper">
+  <nav class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-16">
+    <a href="index.html" class="text-lg font-bold tracking-tight text-mb-dark font-headline">MasonboroIsland.org</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html#mainland" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">Before You Go</a>
+      <a href="index.html#crossing" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">The Crossing</a>
+      <a href="index.html#safety" class="font-label text-[11px] uppercase tracking-[0.2em] transition-colors" style="color:#a03520;">Safety</a>
+      <a href="index.html#island" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">On the Island</a>
+      <a href="plan.html" class="text-mb-accent border-b border-mb-accent font-label text-[11px] uppercase tracking-[0.2em] pb-1">Plan Trip</a>
+    </div>
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden flex items-center justify-center w-10 h-10" aria-label="Menu">
+      <span class="material-symbols-outlined text-mb-dark">menu</span>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden bg-mb-cream/95 backdrop-blur-xl border-t border-mb-paper px-6 pb-6 pt-4 space-y-4">
+    <a href="index.html#mainland" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">Before You Go</a>
+    <a href="index.html#crossing" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">The Crossing</a>
+    <a href="index.html#safety" class="block font-bold font-label text-sm uppercase tracking-widest py-2" style="color:#a03520;">Safety</a>
+    <a href="index.html#island" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">On the Island</a>
+    <a href="plan.html" class="block text-mb-accent font-bold font-label text-sm uppercase tracking-widest py-2">Plan Trip</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero-bg relative">
+    <div class="max-w-4xl mx-auto px-6 md:px-8 pt-14 md:pt-24 pb-12 md:pb-20 relative z-10">
+      <nav class="font-label text-[10px] uppercase tracking-[0.25em] text-mb-ink-light mb-6">
+        <a href="index.html" class="hover:text-mb-accent">Home</a>
+        <span class="mx-2 text-mb-rule">&middot;</span>
+        <span class="text-mb-accent">Plan Your Trip</span>
+      </nav>
+      <span class="font-label text-mb-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-4 block">Day-Of Briefing</span>
+      <h1 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tight text-mb-dark leading-[1.02] mb-6">
+        Plan your<br>Masonboro trip.
+      </h1>
+      <p class="font-body text-lg md:text-xl text-mb-ink-mid leading-relaxed max-w-2xl font-light">
+        Pick a date. Pick where you're launching from. We pull live tides and weather for that spot and that day, cross-check them against the hazards that matter, and hand you a briefing you can actually use.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ PLANNER FORM ══════════ -->
+  <section class="bg-mb-paper relative">
+    <div class="max-w-4xl mx-auto px-6 md:px-8 py-12 md:py-16 relative z-10">
+      <div class="briefing-card">
+        <div class="mb-6 md:mb-8">
+          <span class="font-label text-mb-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">Step 1</span>
+          <h2 class="font-headline text-2xl md:text-3xl font-extrabold tracking-tight text-mb-dark">Tell us about the trip.</h2>
+        </div>
+
+        <!-- When -->
+        <div class="mb-8">
+          <label class="data-label block">When are you going?</label>
+          <div class="flex flex-wrap items-center gap-3">
+            <input type="date" id="trip-date"
+              class="border border-mb-rule bg-white px-4 py-3 font-body text-mb-ink rounded focus:ring-2 focus:ring-mb-accent/30 focus:border-mb-accent"
+              style="font-family:inherit;">
+            <span id="date-helper" class="font-label text-[11px] uppercase tracking-[0.2em] text-mb-ink-light"></span>
+          </div>
+        </div>
+
+        <!-- Launch from -->
+        <div class="mb-8">
+          <label class="data-label block">Where are you launching from?</label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="launch-options">
+            <label class="launch-card" data-launch="trails-end">
+              <input type="radio" name="launch" value="trails-end">
+              <div class="launch-head">
+                <span class="material-symbols-outlined text-mb-sea text-xl">sailing</span>
+                <span class="launch-name">Trails End Park</span>
+                <span class="launch-meta">~0.5 mi</span>
+              </div>
+              <p class="launch-desc">Public boat ramp at the south end of Masonboro Loop Rd. Shortest paddle. Best for kayak, SUP, small boat.</p>
+            </label>
+            <label class="launch-card" data-launch="wrightsville">
+              <input type="radio" name="launch" value="wrightsville">
+              <div class="launch-head">
+                <span class="material-symbols-outlined text-mb-sea text-xl">kayaking</span>
+                <span class="launch-name">Wrightsville Beach</span>
+                <span class="launch-meta">~1 mi</span>
+              </div>
+              <p class="launch-desc">Banks Channel small-craft launches. Longer, more exposed paddle south. Best for experienced kayak/SUP.</p>
+            </label>
+            <label class="launch-card" data-launch="carolina-beach">
+              <input type="radio" name="launch" value="carolina-beach">
+              <div class="launch-head">
+                <span class="material-symbols-outlined text-mb-sea text-xl">directions_boat</span>
+                <span class="launch-name">Carolina Beach Inlet</span>
+                <span class="launch-meta">~3 mi</span>
+              </div>
+              <p class="launch-desc">Inlet-side ramps. Longer run by water, but quick once you're in. Boat only &mdash; inlet currents are no joke.</p>
+            </label>
+            <label class="launch-card" data-launch="charter">
+              <input type="radio" name="launch" value="charter">
+              <div class="launch-head">
+                <span class="material-symbols-outlined text-mb-sea text-xl">airline_seat_recline_normal</span>
+                <span class="launch-name">Charter / Shuttle</span>
+                <span class="launch-meta">Dropped off</span>
+              </div>
+              <p class="launch-desc">Local operators run drop-off service to the island. Weather-dependent &mdash; the operator decides if it's a go.</p>
+            </label>
+          </div>
+        </div>
+
+        <!-- Vessel -->
+        <div class="mb-8">
+          <label class="data-label block">What are you crossing in?</label>
+          <div class="seg" id="vessel-seg">
+            <button type="button" data-vessel="kayak" class="active">Kayak / SUP</button>
+            <button type="button" data-vessel="small-boat">Small boat</button>
+            <button type="button" data-vessel="charter">Charter</button>
+          </div>
+        </div>
+
+        <!-- Trip type -->
+        <div class="mb-8">
+          <label class="data-label block">Trip type</label>
+          <div class="seg" id="type-seg">
+            <button type="button" data-type="day" class="active">Day trip</button>
+            <button type="button" data-type="overnight">Overnight</button>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-4 border-t border-mb-rule">
+          <button id="generate-briefing" class="inline-flex items-center gap-2 bg-mb-dark text-mb-cream px-8 py-4 font-label text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-mb-teal transition-all rounded disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <span class="material-symbols-outlined text-base">flight_takeoff</span>
+            Build my briefing
+          </button>
+          <p class="mt-3 font-label text-[10px] uppercase tracking-widest text-mb-ink-light" id="form-hint">Pick a launch point to continue</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ BRIEFING OUTPUT ══════════ -->
+  <section id="briefing-output" class="hidden bg-mb-cream relative">
+    <div class="max-w-4xl mx-auto px-6 md:px-8 py-12 md:py-20 relative z-10">
+      <div class="mb-8">
+        <span class="font-label text-mb-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block" id="briefing-label">The Briefing</span>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-mb-dark leading-[1.05]" id="briefing-heading">&mdash;</h2>
+        <p class="text-mb-ink-mid mt-3 leading-relaxed" id="briefing-summary">&mdash;</p>
+      </div>
+
+      <!-- Verdict -->
+      <div id="verdict-block" class="verdict-card mb-8">
+        <span class="verdict-badge" id="verdict-badge">&mdash;</span>
+        <h3 class="font-headline text-2xl md:text-3xl font-extrabold text-mb-dark leading-tight mb-3" id="verdict-title">&mdash;</h3>
+        <p class="text-mb-ink-mid leading-relaxed" id="verdict-reasons">&mdash;</p>
+      </div>
+
+      <!-- Data grid: Tides, Weather, Crossing Window, Launch Notes -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-8">
+
+        <div class="briefing-card">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">tide</span>
+            <span class="data-label mb-0" id="tide-card-label">Tides</span>
+          </div>
+          <div id="tide-content">&mdash;</div>
+        </div>
+
+        <div class="briefing-card">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">partly_cloudy_day</span>
+            <span class="data-label mb-0" id="weather-card-label">Weather</span>
+          </div>
+          <div id="weather-content">&mdash;</div>
+        </div>
+
+        <div class="briefing-card md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">schedule</span>
+            <span class="data-label mb-0">Best Crossing Window</span>
+          </div>
+          <div id="crossing-content">&mdash;</div>
+        </div>
+
+        <div class="briefing-card md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">location_on</span>
+            <span class="data-label mb-0" id="launch-card-label">Launch Notes</span>
+          </div>
+          <div id="launch-content">&mdash;</div>
+        </div>
+
+      </div>
+
+      <!-- Safety flags -->
+      <div class="briefing-card mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined" style="color:#b8651a;">warning</span>
+          <span class="data-label mb-0">Safety Flags</span>
+        </div>
+        <div id="flags-content">&mdash;</div>
+      </div>
+
+      <!-- Dynamic checklist -->
+      <div class="briefing-card mb-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-mb-accent">checklist</span>
+          <span class="data-label mb-0">Pre-Trip Checklist</span>
+          <span class="ml-auto font-label text-[10px] text-mb-ink-light italic">Tuned to your conditions</span>
+        </div>
+        <ul class="checklist" id="checklist-content"></ul>
+      </div>
+
+      <!-- Night sky (overnight only) -->
+      <div id="night-sky-block" class="briefing-card mb-8 hidden" style="background:#0a1028;color:#f5f0e8;border-color:#1e2a52;">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-mb-accent-light">nights_stay</span>
+          <span class="data-label mb-0" style="color:#f0a050;">Overnight Sky</span>
+        </div>
+        <div id="night-sky-content">&mdash;</div>
+      </div>
+
+      <!-- Disclaimer + change plan -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-mb-rule">
+        <button id="reset-briefing" class="font-label text-[11px] uppercase tracking-[0.2em] text-mb-accent hover:text-mb-accent-light font-bold">
+          &larr; Adjust the plan
+        </button>
+        <p class="text-xs text-mb-ink-light italic max-w-md">
+          This briefing is generated from live data &mdash; conditions change. See <a href="index.html#safety" class="text-mb-accent underline">safety</a>, bring a float plan, and don't attempt beyond your skill.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="bg-mb-dark text-white/70 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto px-6 md:px-8">
+    <div class="md:col-span-2">
+      <div class="text-lg font-semibold text-white font-headline mb-4">Masonboro Island Coastal Field Station</div>
+      <p class="text-white/50 font-body text-sm max-w-md leading-relaxed mb-4">
+        A public field guide for Masonboro Island &mdash; the undeveloped barrier island south of Wrightsville Beach, North Carolina.
+      </p>
+    </div>
+    <div>
+      <h5 class="font-label text-[11px] uppercase tracking-widest text-mb-accent font-bold mb-6">Sibling Sites</h5>
+      <ul class="space-y-3">
+        <li><a href="https://sharktoothisland.org" target="_blank" rel="noopener" class="text-white/50 font-body text-sm hover:text-white transition-colors">SharkToothIsland.org &rarr;</a></li>
+        <li><a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 font-body text-sm hover:text-white transition-colors">Mozy Outdoors &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-5xl mx-auto px-6 md:px-8 mt-12 pt-6 border-t border-white/10">
+    <p class="text-white/50 text-xs leading-relaxed mb-3">
+      <strong class="text-white/70">Important.</strong> The trip planner is an informational aid based on live public forecasts. It does not replace personal judgment or professional guidance. You are responsible for your own safety. In an emergency, dial <strong class="text-white/70">911</strong> or hail the U.S. Coast Guard on <strong class="text-white/70">VHF Channel 16</strong>.
+    </p>
+    <p class="font-label text-[10px] uppercase tracking-widest text-white/25">
+      &copy; 2026 Masonboro Island Coastal Field Station &middot; A field project by <a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 hover:text-white">Mozy Outdoors</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ══════════ SCRIPTS ══════════ -->
+<script>
+// ════════════════════════════════════════════════════
+// LAUNCH POINT CONFIG
+// ════════════════════════════════════════════════════
+const LAUNCHES = {
+  'trails-end': {
+    name: 'Trails End Park',
+    lat: 34.1627, lon: -77.8369,
+    noaaStation: '8658163',
+    stationName: 'Wrightsville Beach',
+    paddleDistance: 0.5,
+    vessels: ['kayak', 'small-boat'],
+    notes: [
+      'Public boat ramp at the south end of Masonboro Loop Road. Plenty of kayak launch space but the ramp fills up on weekends.',
+      'Shortest paddle to Masonboro — roughly half a mile across the ICW channel.',
+      'Current runs hard through Shinn Creek at peak ebb and flood. Cross near slack tide.',
+      'Parking is public but limited. Arrive early on summer weekends.'
+    ]
+  },
+  'wrightsville': {
+    name: 'Wrightsville Beach · Banks Channel',
+    lat: 34.2152, lon: -77.7985,
+    noaaStation: '8658163',
+    stationName: 'Wrightsville Beach',
+    paddleDistance: 1.0,
+    vessels: ['kayak', 'small-boat'],
+    notes: [
+      'Small-craft launches along Banks Channel near Blockade Runner or public access points.',
+      'Longer paddle south to the north end of Masonboro — roughly a mile through the channel.',
+      'More exposed than Trails End. Boat wake and wind chop can build fast.',
+      'Paid parking lots, tight on weekends.'
+    ]
+  },
+  'carolina-beach': {
+    name: 'Carolina Beach Inlet',
+    lat: 34.0473, lon: -77.8842,
+    noaaStation: '8658715',
+    stationName: 'Federal Point',
+    paddleDistance: 3.0,
+    vessels: ['small-boat', 'charter'],
+    notes: [
+      'Inlet-side ramps at Carolina Beach. Bigger run to reach Masonboro — about three miles by water around the south end.',
+      'Inlet currents can be brutal near the mouth. Check NOAA inlet advisories and do not attempt in a paddle craft.',
+      'Shortest route once you are in the ICW, but the approach through the inlet is the wildcard.',
+      'Boat only. Not a paddlecraft launch for beginners or even intermediates.'
+    ]
+  },
+  'charter': {
+    name: 'Charter / Shuttle drop-off',
+    lat: 34.115, lon: -77.845,
+    noaaStation: '8658163',
+    stationName: 'Wrightsville Beach',
+    paddleDistance: 0,
+    vessels: ['charter'],
+    notes: [
+      'Several local operators run drop-off service to the island. Best for families, overnight gear, or anyone not paddling.',
+      'Pre-book. Summer weekends fill up.',
+      'The operator decides if weather is a go. Your briefing below still matters — it shapes the day you have once you are dropped off.',
+      'Confirm your pickup time before you get dropped. Getting stranded is the common mistake.'
+    ]
+  }
+};
+
+// ════════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════════
+function fmtTime(iso) {
+  const d = new Date(iso);
+  let h = d.getHours();
+  const m = String(d.getMinutes()).padStart(2,'0');
+  const ampm = h >= 12 ? 'pm' : 'am';
+  h = h % 12 || 12;
+  return `${h}:${m} ${ampm}`;
+}
+function fmtDayFull(d) { return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' }); }
+function fmtDayShort(d) { return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); }
+function fmtNoaa(d) {
+  return d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+}
+function parseLocalDate(isoStr) {
+  // isoStr is 'YYYY-MM-DD' from the date input
+  const [y, m, d] = isoStr.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+function daysFromNow(date) {
+  const now = new Date();
+  now.setHours(0,0,0,0);
+  const diff = Math.round((date.getTime() - now.getTime()) / (1000*60*60*24));
+  return diff;
+}
+const WMO = {
+  0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Overcast',
+  45:'Fog',48:'Icy fog',
+  51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',
+  61:'Light rain',63:'Rain',65:'Heavy rain',
+  71:'Light snow',73:'Snow',75:'Heavy snow',
+  80:'Rain showers',81:'Heavy showers',82:'Violent showers',
+  95:'Thunderstorm',96:'T-storm w/ hail',99:'Severe t-storm'
+};
+function isThunderCode(c) { return c === 95 || c === 96 || c === 99; }
+
+// ════════════════════════════════════════════════════
+// FORM STATE
+// ════════════════════════════════════════════════════
+const state = {
+  date: null,          // Date object
+  launch: null,        // key into LAUNCHES
+  vessel: 'kayak',
+  tripType: 'day'
+};
+
+// Init date: default to tomorrow
+(function initDate() {
+  const input = document.getElementById('trip-date');
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const max = new Date(today);
+  max.setDate(today.getDate() + 14);
+  const fmt = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  input.min = fmt(today);
+  input.max = fmt(max);
+  input.value = fmt(tomorrow);
+  state.date = tomorrow;
+  updateDateHelper();
+})();
+
+function updateDateHelper() {
+  const helper = document.getElementById('date-helper');
+  if (!state.date) { helper.textContent = ''; return; }
+  const d = daysFromNow(state.date);
+  let rel = '';
+  if (d === 0) rel = 'Today';
+  else if (d === 1) rel = 'Tomorrow';
+  else if (d < 0) rel = 'In the past';
+  else rel = `In ${d} days`;
+  helper.textContent = `${rel} · ${fmtDayShort(state.date)}`;
+}
+
+document.getElementById('trip-date').addEventListener('change', e => {
+  state.date = parseLocalDate(e.target.value);
+  updateDateHelper();
+  updateFormReady();
+});
+
+// Launch selector
+document.querySelectorAll('#launch-options .launch-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('#launch-options .launch-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    card.querySelector('input').checked = true;
+    state.launch = card.dataset.launch;
+    updateFormReady();
+  });
+});
+
+// Vessel seg
+document.querySelectorAll('#vessel-seg button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#vessel-seg button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.vessel = b.dataset.vessel;
+  });
+});
+
+// Trip type seg
+document.querySelectorAll('#type-seg button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#type-seg button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    state.tripType = b.dataset.type;
+  });
+});
+
+function updateFormReady() {
+  const btn = document.getElementById('generate-briefing');
+  const hint = document.getElementById('form-hint');
+  const ready = state.date && state.launch;
+  btn.disabled = !ready;
+  if (!state.launch) hint.textContent = 'Pick a launch point to continue';
+  else if (!state.date) hint.textContent = 'Pick a date to continue';
+  else hint.textContent = `Ready — briefing uses ${LAUNCHES[state.launch].stationName} tide station + your date's forecast`;
+}
+
+// ════════════════════════════════════════════════════
+// DATA FETCHERS
+// ════════════════════════════════════════════════════
+async function fetchTides(station, date) {
+  const begin = new Date(date); begin.setHours(0,0,0,0);
+  const end = new Date(date); end.setHours(23,59,59,999);
+  // Pull a 24-hour window with hi/lo predictions
+  const url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${fmtNoaa(begin)}&end_date=${fmtNoaa(end)}&station=${station}&product=predictions&datum=MLLW&interval=hilo&units=english&time_zone=lst_ldt&format=json`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!data.predictions) throw new Error('no tide data');
+  return data.predictions;
+}
+
+async function fetchWeather(lat, lon, date) {
+  const start = fmtNoaaDate(date);
+  // Open-Meteo can do a specific date via start_date/end_date
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m,cloud_cover,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York&start_date=${start}&end_date=${start}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (!data.hourly) throw new Error('no weather data');
+  return data.hourly;
+}
+function fmtNoaaDate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// ════════════════════════════════════════════════════
+// ANALYSIS: verdict, flags, crossing window
+// ════════════════════════════════════════════════════
+function analyzeTides(tides, date) {
+  const highs = tides.filter(p => p.type === 'H').map(p => ({ time: new Date(p.t), height: parseFloat(p.v), type: 'H' }));
+  const lows  = tides.filter(p => p.type === 'L').map(p => ({ time: new Date(p.t), height: parseFloat(p.v), type: 'L' }));
+  const kingTide = highs.some(h => h.height >= 5.0);
+  const allEvents = [...highs, ...lows].sort((a,b) => a.time - b.time);
+  return { highs, lows, allEvents, kingTide };
+}
+
+function analyzeWeather(weather) {
+  // Aggregate daytime (6am to 8pm) and trip-relevant windows
+  const times = weather.time.map(t => new Date(t));
+  const hours = times.map(t => t.getHours());
+  const dayMask = hours.map(h => h >= 6 && h <= 20);
+  const pick = arr => arr.filter((_, i) => dayMask[i]);
+
+  const temps   = pick(weather.temperature_2m);
+  const winds   = pick(weather.wind_speed_10m);
+  const gusts   = pick(weather.wind_gusts_10m || []);
+  const codes   = pick(weather.weather_code);
+  const precipP = pick(weather.precipitation_probability || []);
+  const cloud   = pick(weather.cloud_cover);
+  const humid   = pick(weather.relative_humidity_2m || []);
+
+  const avg = a => a.length ? Math.round(a.reduce((x,y)=>x+y,0)/a.length) : 0;
+  const mx  = a => a.length ? Math.max(...a) : 0;
+  const mn  = a => a.length ? Math.min(...a) : 0;
+
+  return {
+    tempMin: Math.round(mn(temps)),
+    tempMax: Math.round(mx(temps)),
+    tempAvg: avg(temps),
+    windAvg: avg(winds),
+    windMax: Math.round(mx(winds)),
+    gustMax: Math.round(mx(gusts)),
+    cloudAvg: avg(cloud),
+    humidAvg: avg(humid),
+    precipMax: Math.round(mx(precipP)),
+    anyThunder: codes.some(isThunderCode),
+    hasFog: codes.some(c => c === 45 || c === 48),
+    worstCode: codes.reduce((w, c) => c > w ? c : w, 0),
+    codes
+  };
+}
+
+function analyzeCrossingWindow(tides, date) {
+  // Best crossing: near slack tide, in daylight (6am–8pm)
+  // Slack happens ~between a high and the following low (and vice versa),
+  // with the window roughly +/- 45 min around the slack moment.
+  const events = tides.allEvents;
+  const windows = [];
+  for (let i = 0; i < events.length - 1; i++) {
+    const a = events[i], b = events[i+1];
+    const midT = new Date((a.time.getTime() + b.time.getTime()) / 2);
+    if (midT.getHours() >= 6 && midT.getHours() <= 20) {
+      windows.push({
+        around: midT,
+        after: a.type === 'H' ? 'high' : 'low',
+        before: b.type === 'H' ? 'high' : 'low'
+      });
+    }
+  }
+  return windows;
+}
+
+function computeVerdict(launch, weather, tides, vessel) {
+  let score = 100;
+  const reasons = [];
+  const isPaddle = (vessel === 'kayak');
+
+  if (weather.anyThunder) {
+    score -= 80;
+    reasons.push('thunderstorms in the forecast &mdash; lightning on open water is a hard stop');
+  }
+  if (weather.precipMax >= 70) {
+    score -= 40;
+    reasons.push(`${weather.precipMax}% chance of rain`);
+  } else if (weather.precipMax >= 40) {
+    score -= 15;
+    reasons.push(`${weather.precipMax}% chance of rain`);
+  }
+  if (weather.windMax > 25) {
+    score -= 50;
+    reasons.push(`winds to ${weather.windMax} mph &mdash; too much for a paddle crossing`);
+  } else if (weather.windMax > 18) {
+    score -= 25;
+    reasons.push(`winds to ${weather.windMax} mph (chop and paddle strain)`);
+  } else if (weather.windMax > 13) {
+    score -= 8;
+    reasons.push(`breezy — winds near ${weather.windMax} mph`);
+  }
+  if (weather.hasFog) {
+    score -= 20;
+    reasons.push('fog in the forecast reduces visibility on the water');
+  }
+  if (isPaddle && weather.tempMin < 55) {
+    score -= 15;
+    reasons.push(`cold conditions (low ${weather.tempMin}°F) — dress for the water, not the air`);
+  }
+  if (tides.kingTide) {
+    score -= 8;
+    reasons.push('king tide — higher water, faster currents, less exposed shoreline');
+  }
+  if (launch === 'carolina-beach' && isPaddle) {
+    score -= 40;
+    reasons.push('Carolina Beach Inlet is not a paddlecraft launch — inlet currents are dangerous');
+  }
+
+  let verdict;
+  if (score >= 80)       verdict = { level: 'go',   label: 'Good to Go',             class: 'go',   cardClass: 'verdict-go' };
+  else if (score >= 55)  verdict = { level: 'warn', label: 'Proceed with Caution',   class: 'warn', cardClass: 'verdict-warn' };
+  else                   verdict = { level: 'bad',  label: 'Not a Go',               class: 'bad',  cardClass: 'verdict-bad' };
+
+  return { verdict, score, reasons };
+}
+
+function buildFlags(launch, launchCfg, weather, tides, vessel, tripType) {
+  const flags = [];
+  if (weather.anyThunder) flags.push({ type:'bad', icon:'thunderstorm', text:'<strong>Thunderstorms forecast.</strong> Stay off the water. Lightning on open flat water is the most dangerous place you can be.' });
+  if (weather.precipMax >= 60) flags.push({ type:'warn', icon:'rainy', text:`Heavy rain possible (${weather.precipMax}% chance). Visibility drops, paddlecraft tracking suffers.` });
+  if (weather.windMax > 18) flags.push({ type:'warn', icon:'air', text:`Strong winds (gusts to ${weather.gustMax || weather.windMax} mph). ICW will be choppy — paddle crossings get dangerous above 15 mph.` });
+  if (weather.hasFog) flags.push({ type:'warn', icon:'foggy', text:'Fog in forecast. If visibility drops under a quarter mile, do not launch.' });
+  if (vessel === 'kayak' && weather.tempMin < 55) flags.push({ type:'warn', icon:'ac_unit', text:`Cold (min ${weather.tempMin}°F). If you capsize, hypothermia is faster than people expect. Dress for the water, not the air.` });
+  if (tides.kingTide) {
+    const peak = tides.highs.reduce((a,b) => a.height > b.height ? a : b);
+    flags.push({ type:'warn', icon:'waves', text:`King tide in effect — peak ${peak.height.toFixed(1)} ft at ${fmtTime(peak.time)}. Marsh paths may be flooded, currents are faster.` });
+  }
+  if (launch === 'carolina-beach' && vessel === 'kayak') {
+    flags.push({ type:'bad', icon:'block', text:'Carolina Beach Inlet is NOT a paddlecraft launch. Inlet currents and ocean swell at the mouth are boat-only conditions.' });
+  }
+  if (launch === 'charter' && (weather.windMax > 22 || weather.anyThunder)) {
+    flags.push({ type:'warn', icon:'sailing', text:'Your charter operator may cancel in these conditions. Confirm before you drive to the launch.' });
+  }
+  if (tripType === 'overnight' && weather.tempMin < 50) {
+    flags.push({ type:'warn', icon:'bedroom_child', text:`Overnight low around ${weather.tempMin}°F. Tent camping gets cold fast on an exposed island. Bring proper sleeping gear.` });
+  }
+  if (launch === 'wrightsville' && vessel === 'kayak' && weather.windMax > 13) {
+    flags.push({ type:'warn', icon:'air', text:'Banks Channel is more exposed than Trails End. With the forecast winds, consider Trails End instead for a shorter, more sheltered paddle.' });
+  }
+
+  if (flags.length === 0) {
+    flags.push({ type:'good', icon:'check_circle', text:'No major safety flags for this combination. Conditions look workable. Still: float plan, PFD, check live tides before you launch.' });
+  }
+  return flags;
+}
+
+function buildChecklist(launch, launchCfg, weather, tides, vessel, tripType) {
+  const list = [];
+  // Always-required
+  list.push({ text: 'PFD on every person — wear it, not stow it', critical: true });
+  list.push({ text: 'Float plan filed with someone not on the trip (where, when, who, expected return)', critical: true });
+  list.push({ text: 'Phone fully charged in a dry bag', critical: true });
+  list.push({ text: 'More water than you think you need — the island has none' });
+  // Conditions-driven
+  if (weather.windMax > 13) list.push({ text: `Extra layers — wind chill at ${weather.windMax} mph makes it feel cooler`, critical: weather.tempMin < 60 });
+  if (weather.tempMax > 85) list.push({ text: 'Sun protection: long sleeves, hat, reapplied sunscreen', critical: true });
+  if (weather.tempMax > 85 || weather.humidAvg > 75) list.push({ text: 'Electrolytes or salt, not just water — humidity + exertion = cramping' });
+  if (vessel === 'kayak' && weather.tempMin < 65) list.push({ text: 'Dress for the water temperature, not air (wet layers that insulate)', critical: weather.tempMin < 55 });
+  if (tides.kingTide) list.push({ text: 'Give yourself extra time on the crossing — king tide currents run harder', critical: true });
+  if (weather.precipMax > 30) list.push({ text: 'Rain layer that actually works when wet (not just water-resistant)' });
+  if (tripType === 'overnight') {
+    list.push({ text: 'Tent, pad, bag rated for the forecast low', critical: true });
+    list.push({ text: 'Headlamp per person (plus spare batteries)', critical: true });
+    list.push({ text: 'Contained stove — no ground fires allowed', critical: true });
+    list.push({ text: 'All food in sealed containers; bugs and crabs are real' });
+  }
+  if (launch === 'trails-end' && vessel === 'kayak') list.push({ text: 'Arrive early on weekends — Trails End parking fills by 9 am in season' });
+  if (launch === 'charter') list.push({ text: 'Confirmed pickup time in writing — getting stranded is the common mistake', critical: true });
+  if (launch === 'carolina-beach') list.push({ text: 'VHF radio aboard; ocean-rated PFDs; check inlet advisories before launching', critical: true });
+
+  // Always
+  list.push({ text: 'Trash bag — pack out everything you bring in' });
+  list.push({ text: 'In an emergency: dial 911 or VHF Channel 16', critical: true });
+
+  return list;
+}
+
+function moonPhase(date) {
+  const known = new Date('2000-01-06');
+  const diff = (date - known) / (1000*60*60*24);
+  const lunations = diff / 29.530588853;
+  const phase = lunations - Math.floor(lunations);
+  const illum = Math.round((1 - Math.cos(phase * 2 * Math.PI)) / 2 * 100);
+  let name;
+  if (phase < 0.03 || phase > 0.97) name = 'New Moon';
+  else if (phase < 0.22) name = 'Waxing Crescent';
+  else if (phase < 0.28) name = 'First Quarter';
+  else if (phase < 0.47) name = 'Waxing Gibbous';
+  else if (phase < 0.53) name = 'Full Moon';
+  else if (phase < 0.72) name = 'Waning Gibbous';
+  else if (phase < 0.78) name = 'Last Quarter';
+  else name = 'Waning Crescent';
+  return { name, illum };
+}
+
+const METEOR_SHOWERS = [
+  { name: 'Quadrantids', peak: '01-04', rate: 40 },
+  { name: 'Lyrids',      peak: '04-22', rate: 18 },
+  { name: 'Eta Aquariids',peak:'05-06', rate: 30 },
+  { name: 'Perseids',    peak: '08-12', rate: 60 },
+  { name: 'Orionids',    peak: '10-21', rate: 20 },
+  { name: 'Leonids',     peak: '11-17', rate: 15 },
+  { name: 'Geminids',    peak: '12-14', rate: 75 },
+  { name: 'Ursids',      peak: '12-22', rate: 10 }
+];
+function meteorNear(date) {
+  const year = date.getFullYear();
+  let closest = null, diff = Infinity;
+  METEOR_SHOWERS.forEach(s => {
+    const [mo, da] = s.peak.split('-').map(Number);
+    const d = new Date(year, mo-1, da);
+    const x = Math.abs(d - date);
+    if (x < diff) { diff = x; closest = { ...s, date: d }; }
+  });
+  const daysOff = Math.round((closest.date - date) / (1000*60*60*24));
+  return { ...closest, daysOff };
+}
+
+// ════════════════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════════════════
+function render(launchKey, tides, weather, date, vessel, tripType) {
+  const launchCfg = LAUNCHES[launchKey];
+  const { verdict, reasons } = computeVerdict(launchKey, weather, tides, vessel);
+  const flags = buildFlags(launchKey, launchCfg, weather, tides, vessel, tripType);
+  const checklist = buildChecklist(launchKey, launchCfg, weather, tides, vessel, tripType);
+  const windows = analyzeCrossingWindow(tides, date);
+
+  // Heading
+  document.getElementById('briefing-label').textContent = `${fmtDayFull(date)} · from ${launchCfg.name}`;
+  document.getElementById('briefing-heading').textContent = verdict.label + '.';
+  document.getElementById('briefing-summary').textContent = reasons.length
+    ? `Based on live NOAA tides at ${launchCfg.stationName}, Open-Meteo weather for the launch coordinates, and launch-specific rules.`
+    : 'Based on live NOAA tides, Open-Meteo weather, and launch-specific rules — and nothing came back flagged.';
+
+  // Verdict card
+  const vBlock = document.getElementById('verdict-block');
+  vBlock.className = 'verdict-card mb-8 ' + verdict.cardClass;
+  const vBadge = document.getElementById('verdict-badge');
+  vBadge.className = 'verdict-badge ' + verdict.class;
+  vBadge.innerHTML = `<span class="material-symbols-outlined text-base">${verdict.level === 'go' ? 'check_circle' : verdict.level === 'warn' ? 'warning' : 'cancel'}</span> ${verdict.label}`;
+  document.getElementById('verdict-title').textContent =
+    verdict.level === 'go' ? 'Green light.'
+    : verdict.level === 'warn' ? 'Workable, but sharpen your plan.'
+    : 'Pick a different day.';
+  document.getElementById('verdict-reasons').innerHTML = reasons.length
+    ? 'Why: ' + reasons.join(' · ') + '.'
+    : 'Nothing blocking — forecast looks workable for the trip you described.';
+
+  // Tides
+  document.getElementById('tide-card-label').innerHTML = `Tides &middot; ${launchCfg.stationName}`;
+  document.getElementById('tide-content').innerHTML = tides.allEvents.map(e => {
+    const isKing = e.type === 'H' && e.height >= 5.0;
+    const pillClass = isKing ? 'king' : (e.type === 'H' ? 'high' : 'low');
+    const label = isKing ? 'King High' : (e.type === 'H' ? 'High' : 'Low');
+    return `<div class="tide-row">
+      <div>
+        <span class="tide-pill ${pillClass}"><span class="material-symbols-outlined" style="font-size:12px;">${e.type === 'H' ? 'north' : 'south'}</span>${label}</span>
+      </div>
+      <div class="text-right">
+        <div class="font-headline font-bold text-mb-dark">${fmtTime(e.time)}</div>
+        <div class="font-label text-[10px] uppercase tracking-wider text-mb-ink-light">${e.height.toFixed(1)} ft</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Weather
+  document.getElementById('weather-card-label').innerHTML = `Weather &middot; ${fmtDayShort(date)}`;
+  const worstDesc = WMO[weather.worstCode] || '—';
+  document.getElementById('weather-content').innerHTML = `
+    <div class="flex items-baseline justify-between mb-3">
+      <div>
+        <span class="font-headline text-2xl font-extrabold text-mb-dark">${weather.tempMin}°–${weather.tempMax}°</span>
+        <span class="text-mb-ink-mid text-sm ml-2">${worstDesc}</span>
+      </div>
+      <div class="text-right">
+        <div class="font-label text-[10px] uppercase tracking-wider text-mb-ink-light">Wind</div>
+        <div class="font-headline font-bold text-mb-dark">${weather.windAvg} mph${weather.gustMax > weather.windAvg + 5 ? ` <span class="text-xs text-mb-ink-light">(gusts ${weather.gustMax})</span>` : ''}</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-2 pt-3 border-t border-mb-rule text-center">
+      <div>
+        <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Cloud</div>
+        <div class="font-headline font-bold text-mb-dark text-sm">${weather.cloudAvg}%</div>
+      </div>
+      <div>
+        <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Humid</div>
+        <div class="font-headline font-bold text-mb-dark text-sm">${weather.humidAvg}%</div>
+      </div>
+      <div>
+        <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Rain</div>
+        <div class="font-headline font-bold text-mb-dark text-sm">${weather.precipMax}%</div>
+      </div>
+    </div>`;
+
+  // Crossing window
+  const crossEl = document.getElementById('crossing-content');
+  if (windows.length) {
+    crossEl.innerHTML = `
+      <p class="text-mb-ink-mid leading-relaxed mb-4">Slack-tide windows in daylight — the calmest time for a paddle crossing. Aim to be on the water within 30 minutes of these moments.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-${Math.min(windows.length, 3)} gap-3">
+        ${windows.map((w, i) => `
+          <div class="p-4 rounded bg-mb-paper/60 border border-mb-rule">
+            <div class="font-label text-[10px] uppercase tracking-wider text-mb-ink-light mb-1">Window ${i+1}</div>
+            <div class="font-headline text-xl font-extrabold text-mb-dark">${fmtTime(w.around)}</div>
+            <div class="text-xs text-mb-ink-mid mt-1">slack between ${w.after} &rarr; ${w.before}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } else {
+    crossEl.innerHTML = '<p class="text-mb-ink-mid">No ideal daytime slack windows on this date. Consider a different day for a paddle crossing.</p>';
+  }
+
+  // Launch notes
+  document.getElementById('launch-card-label').innerHTML = `From &middot; ${launchCfg.name}`;
+  document.getElementById('launch-content').innerHTML = `
+    <ul class="space-y-2 text-mb-ink-mid leading-relaxed">
+      ${launchCfg.notes.map(n => `<li class="flex gap-3 text-sm"><span class="text-mb-accent flex-shrink-0 mt-1">▸</span><span>${n}</span></li>`).join('')}
+    </ul>
+    <div class="mt-4 pt-4 border-t border-mb-rule flex items-center gap-4 text-xs">
+      <span class="font-label uppercase tracking-widest text-mb-ink-light">Distance</span>
+      <span class="font-headline font-bold text-mb-dark">${launchCfg.paddleDistance === 0 ? 'N/A (dropped off)' : launchCfg.paddleDistance + ' mi across'}</span>
+      <span class="text-mb-rule">·</span>
+      <span class="font-label uppercase tracking-widest text-mb-ink-light">Suited for</span>
+      <span class="font-headline font-bold text-mb-dark">${launchCfg.vessels.join(', ')}</span>
+    </div>`;
+
+  // Flags
+  document.getElementById('flags-content').innerHTML = flags.map(f => `
+    <div class="flag-item ${f.type}">
+      <span class="material-symbols-outlined" style="color:${f.type === 'bad' ? '#a03520' : f.type === 'warn' ? '#b8651a' : '#4a7a3f'};">${f.icon}</span>
+      <span class="text-sm leading-relaxed" style="color:${f.type === 'bad' ? '#6b1d10' : f.type === 'warn' ? '#6b3c0e' : '#2d4a23'};">${f.text}</span>
+    </div>
+  `).join('');
+
+  // Checklist
+  document.getElementById('checklist-content').innerHTML = checklist.map(item =>
+    `<li class="${item.critical ? 'critical' : ''}">${item.text}</li>`
+  ).join('');
+
+  // Night sky (overnight)
+  const nightBlock = document.getElementById('night-sky-block');
+  if (tripType === 'overnight') {
+    const moon = moonPhase(date);
+    const meteor = meteorNear(date);
+    let meteorLine;
+    if (Math.abs(meteor.daysOff) <= 3) meteorLine = `<strong>${meteor.name}</strong> meteor shower peaks ${meteor.daysOff === 0 ? 'this night' : meteor.daysOff > 0 ? `in ${meteor.daysOff} days` : `${Math.abs(meteor.daysOff)} days ago`} — roughly ${meteor.rate}/hr at peak.`;
+    else meteorLine = `Next meteor shower is <strong>${meteor.name}</strong> (${Math.abs(meteor.daysOff)} days ${meteor.daysOff > 0 ? 'away' : 'past'}) — not a factor tonight.`;
+    const darkSkyNote = moon.illum < 25 ? 'Excellent dark-sky viewing — moon barely interferes.'
+                      : moon.illum < 60 ? 'Some moon interference but still decent stars.'
+                      : 'Bright moon — dim stars and meteors will wash out.';
+
+    document.getElementById('night-sky-content').innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <div class="font-label text-[10px] uppercase tracking-wider text-mb-accent-light mb-1">Moon</div>
+          <p class="font-headline text-xl font-extrabold">${moon.name} · ${moon.illum}%</p>
+          <p class="text-sm text-white/60 mt-1">${darkSkyNote}</p>
+        </div>
+        <div>
+          <div class="font-label text-[10px] uppercase tracking-wider text-mb-accent-light mb-1">Meteors</div>
+          <p class="text-sm text-white/80 mt-2 leading-relaxed">${meteorLine}</p>
+        </div>
+      </div>
+      <p class="text-xs text-white/50 mt-4 pt-4 border-t border-white/10 italic">
+        For rocket launches from Cape Canaveral (visible from Masonboro), see the <a href="index.html#tonight" class="text-mb-accent-light underline">Tonight's Sky</a> section on the main page.
+      </p>`;
+    nightBlock.classList.remove('hidden');
+  } else {
+    nightBlock.classList.add('hidden');
+  }
+
+  document.getElementById('briefing-output').classList.remove('hidden');
+  document.getElementById('briefing-output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ════════════════════════════════════════════════════
+// SUBMIT
+// ════════════════════════════════════════════════════
+document.getElementById('generate-briefing').addEventListener('click', async () => {
+  if (!state.date || !state.launch) return;
+  const btn = document.getElementById('generate-briefing');
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">progress_activity</span> Loading live data…';
+
+  try {
+    const launchCfg = LAUNCHES[state.launch];
+    const [rawTides, rawWeather] = await Promise.all([
+      fetchTides(launchCfg.noaaStation, state.date),
+      fetchWeather(launchCfg.lat, launchCfg.lon, state.date)
+    ]);
+    const tides = analyzeTides(rawTides, state.date);
+    const weather = analyzeWeather(rawWeather);
+    render(state.launch, tides, weather, state.date, state.vessel, state.tripType);
+  } catch (e) {
+    alert('Could not load live data — likely an API hiccup. Try again in a moment. (' + (e.message || 'unknown') + ')');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = orig;
+  }
+});
+
+document.getElementById('reset-briefing').addEventListener('click', () => {
+  document.getElementById('briefing-output').classList.add('hidden');
+  document.querySelector('.briefing-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+updateFormReady();
+</script>
+</body>
+</html>
