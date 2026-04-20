@@ -56,7 +56,7 @@ tailwind.config = {
     background: linear-gradient(180deg, #9bc3d9 0%, #c2d9e2 40%, #e4d4b4 70%, #cfb886 100%);
   }
   @media (max-width: 768px) {
-    .journey-scene { aspect-ratio: 3 / 2; }
+    .journey-scene { aspect-ratio: 16 / 9; }  /* narrower — less letterbox */
   }
 
   /* SUP animation */
@@ -303,7 +303,7 @@ tailwind.config = {
 
   <!-- ══════════ ANIMATED JOURNEY HEADER ══════════ -->
   <section class="journey-scene" aria-label="Mainland to Masonboro Island journey scene">
-    <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMax slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMax meet" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <!-- Sky gradient baked in via CSS; SVG has transparent bg -->
 
       <!-- Sun -->
