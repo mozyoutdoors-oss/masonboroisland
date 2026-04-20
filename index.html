@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masonboro Island &mdash; A Field Guide to the Crossing and the Island</title>
+<meta name="description" content="A field guide for visiting Masonboro Island in North Carolina. What to know before you go, how to make the crossing, and what to do once you're on the island — with live tides, weather, and rocket launch schedules.">
+<meta property="og:title" content="Masonboro Island Field Guide">
+<meta property="og:description" content="The mainland, the crossing, the island. A field guide to one of the last undeveloped barrier islands on the NC coast.">
+<meta property="og:image" content="https://masonboroisland.org/images/hero-masonboro.jpg">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://masonboroisland.org/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        "mb-cream":    "#f5f0e8",
+        "mb-paper":    "#ede7db",
+        "mb-sand":     "#e8dcc1",
+        "mb-dark":     "#0f2e3d",
+        "mb-teal":     "#1a4f5e",
+        "mb-sea":      "#2c6b7d",
+        "mb-accent":   "#d97b2b",
+        "mb-accent-light": "#f0a050",
+        "mb-ink":      "#1c1a17",
+        "mb-ink-mid":  "#4a4640",
+        "mb-ink-light":"#7a756d",
+        "mb-rule":     "#d5cfc5",
+        "mb-good":     "#4a7a3f",
+        "mb-warn":     "#b8651a",
+        "mb-bad":      "#a03520"
+      },
+      borderRadius: { DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem" },
+      fontFamily: { headline: ["Public Sans"], body: ["Public Sans"], label: ["Space Grotesk"] }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  html { scroll-behavior: smooth; }
+
+  /* ───────── JOURNEY HEADER ───────── */
+  .journey-scene {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 1.4;
+    max-height: 70vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, #9bc3d9 0%, #c2d9e2 40%, #e4d4b4 70%, #cfb886 100%);
+  }
+  @media (max-width: 768px) {
+    .journey-scene { aspect-ratio: 3 / 2; }
+  }
+
+  /* SUP animation */
+  .sup {
+    animation: supCross 42s linear infinite;
+  }
+  @keyframes supCross {
+    0%   { transform: translateX(0);     opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { transform: translateX(200px); opacity: 0; }
+  }
+
+  /* Kayak #1 (orange) */
+  .kayak {
+    animation: kayakCross 55s linear infinite;
+    animation-delay: 18s;
+  }
+  @keyframes kayakCross {
+    0%   { transform: translateX(0);     opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { transform: translateX(210px); opacity: 0; }
+  }
+
+  /* Kayak #2 (yellow, farther back, later start) */
+  .kayak-2 {
+    animation: kayak2Cross 50s linear infinite;
+    animation-delay: 32s;
+  }
+  @keyframes kayak2Cross {
+    0%   { transform: translateX(0);     opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { transform: translateX(195px); opacity: 0; }
+  }
+
+  /* Pelican flying across the sky (right to left) */
+  .pelican-glide {
+    animation: pelicanGlide 40s linear infinite;
+    animation-delay: 3s;
+  }
+  @keyframes pelicanGlide {
+    0%   { transform: translateX(0);       opacity: 0; }
+    4%   { opacity: 1; }
+    96%  { opacity: 1; }
+    100% { transform: translateX(-1700px); opacity: 0; }
+  }
+
+  /* Birds */
+  .bird-group {
+    animation: birdsDrift 28s linear infinite;
+  }
+  @keyframes birdsDrift {
+    0%   { transform: translateX(60px) translateY(0); opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translateX(-40px) translateY(-10px); }
+    90%  { opacity: 1; }
+    100% { transform: translateX(-140px) translateY(4px); opacity: 0; }
+  }
+
+  /* Water ripples */
+  .ripple {
+    animation: rippleFloat 6s ease-in-out infinite;
+  }
+  .ripple-2 { animation-delay: 2s; }
+  .ripple-3 { animation-delay: 4s; }
+  @keyframes rippleFloat {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50%      { opacity: 0.8; transform: translateY(-1px); }
+  }
+
+  /* Sun pulse */
+  .sun-disc {
+    animation: sunGlow 6s ease-in-out infinite;
+  }
+  @keyframes sunGlow {
+    0%, 100% { filter: drop-shadow(0 0 18px rgba(255, 210, 95, 0.45)); }
+    50%      { filter: drop-shadow(0 0 26px rgba(255, 210, 95, 0.7)); }
+  }
+
+  /* Zone labels + interactivity */
+  .journey-zone {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 1.25rem;
+    transition: background 0.3s ease;
+  }
+  .journey-zone:hover {
+    background: linear-gradient(180deg, transparent 60%, rgba(15, 46, 61, 0.08));
+  }
+  .zone-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(15, 46, 61, 0.85);
+    background: rgba(245, 240, 232, 0.92);
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(15, 46, 61, 0.1);
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .journey-zone:hover .zone-label {
+    background: #0f2e3d;
+    color: #f5f0e8;
+    border-color: #0f2e3d;
+  }
+  @media (min-width: 768px) {
+    .zone-label { font-size: 11px; padding: 0.6rem 1.1rem; }
+  }
+
+  /* Paper grain */
+  .paper-grain::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none; z-index: 1;
+  }
+
+  /* Data cards */
+  .data-card {
+    background: white;
+    border: 1px solid #d5cfc5;
+    padding: 1.5rem;
+    transition: box-shadow 0.25s ease;
+  }
+  @media (min-width: 768px) { .data-card { padding: 1.75rem; } }
+  .data-card.loading { opacity: 0.55; }
+
+  .data-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #7a756d;
+    margin-bottom: 0.35rem;
+  }
+
+  .tide-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .tide-pill.high { background: #dbeafe; color: #1e40af; }
+  .tide-pill.low  { background: #fef3c7; color: #92400e; }
+
+  .launch-item { border-bottom: 1px solid #d5cfc5; padding: 1rem 0; }
+  .launch-item:last-child { border-bottom: none; }
+  .launch-item:first-child { padding-top: 0; }
+
+  /* Section band variants */
+  .band-mainland { background: #f5f0e8; }
+  .band-crossing { background: linear-gradient(180deg, #d4e4ea 0%, #bfd4dc 100%); }
+  .band-island   { background: linear-gradient(180deg, #e4d9bd 0%, #d6c49a 100%); }
+  .band-night    { background: linear-gradient(180deg, #0a1028 0%, #0f1738 100%); color: #f5f0e8; }
+
+  /* Checklist */
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid #d97b2b;
+    border-radius: 2px;
+    margin-top: 0.45rem;
+  }
+
+  /* Fact row */
+  .fact-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem 1.5rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #d5cfc5;
+  }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-key {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7a756d;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+  }
+  .fact-val { font-size: 0.9375rem; line-height: 1.6; color: #1c1a17; }
+</style>
+</head>
+<body class="bg-mb-cream text-mb-ink font-body">
+
+<!-- ══════════ NAV ══════════ -->
+<header class="sticky top-0 z-50 bg-mb-cream/85 backdrop-blur-xl border-b border-mb-paper">
+  <nav class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 h-16">
+    <a href="#top" class="text-lg font-bold tracking-tight text-mb-dark font-headline">MasonboroIsland.org</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#mainland" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">Before You Go</a>
+      <a href="#crossing" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">The Crossing</a>
+      <a href="#island" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">On the Island</a>
+      <a href="#tonight" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">Tonight's Sky</a>
+    </div>
+    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden flex items-center justify-center w-10 h-10" aria-label="Menu">
+      <span class="material-symbols-outlined text-mb-dark">menu</span>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="hidden md:hidden bg-mb-cream/95 backdrop-blur-xl border-t border-mb-paper px-6 pb-6 pt-4 space-y-4">
+    <a href="#mainland" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">Before You Go</a>
+    <a href="#crossing" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">The Crossing</a>
+    <a href="#island" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">On the Island</a>
+    <a href="#tonight" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">Tonight's Sky</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ══════════ ANIMATED JOURNEY HEADER ══════════ -->
+  <section class="journey-scene" aria-label="Mainland to Masonboro Island journey scene">
+    <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMax slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Sky gradient baked in via CSS; SVG has transparent bg -->
+
+      <!-- Sun -->
+      <g class="sun-disc">
+        <circle cx="1180" cy="110" r="38" fill="#FFD25F"/>
+        <circle cx="1180" cy="110" r="50" fill="none" stroke="#FFD25F" stroke-opacity="0.25" stroke-width="2"/>
+      </g>
+
+      <!-- Distant clouds -->
+      <g fill="#FFFFFF" opacity="0.7">
+        <ellipse cx="300"  cy="90"  rx="70" ry="10"/>
+        <ellipse cx="330"  cy="82"  rx="50" ry="9"/>
+        <ellipse cx="900"  cy="125" rx="85" ry="12"/>
+        <ellipse cx="940"  cy="115" rx="55" ry="10"/>
+      </g>
+
+      <!-- Birds (drifting) -->
+      <g class="bird-group">
+        <path d="M 700 100 q 7 -7 14 0 q 7 -7 14 0"  stroke="#1c1a17" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 740 115 q 5 -5 10 0 q 5 -5 10 0"  stroke="#1c1a17" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 680 125 q 5 -5 10 0 q 5 -5 10 0"  stroke="#1c1a17" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </g>
+
+      <!-- Pelican gliding across the sky (right → left) -->
+      <g transform="translate(1620 70)">
+        <g class="pelican-glide">
+          <g transform="scale(0.85)">
+            <g class="pelican-flying">
+              <path d="M5 15 Q20 0 40 15 Q60 0 75 15 L40 20 Z" fill="#1c1a17"/>
+              <path d="M35 18 Q40 25 45 18 L42 15 L38 15 Z" fill="#dcc699"/>
+              <path d="M40 15 Q55 5 70 15 L40 18 Z" fill="#1c1a17" opacity="0.4"/>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <!-- ═══ MAINLAND (left third, 0-533) ═══ -->
+      <g>
+        <!-- Back treeline -->
+        <path d="M 0 420 L 0 340 L 533 340 L 533 420 Z" fill="#2d4a3e"/>
+        <!-- Pine spires above horizon -->
+        <g fill="#1e3529">
+          <path d="M 40 340 L 55 295 L 70 340 Z"/>
+          <path d="M 90 345 L 108 290 L 126 345 Z"/>
+          <path d="M 175 338 L 192 292 L 209 338 Z"/>
+          <path d="M 260 340 L 280 290 L 300 340 Z"/>
+          <path d="M 350 338 L 370 292 L 390 338 Z"/>
+        </g>
+        <!-- Shoreline ground -->
+        <path d="M 0 560 L 0 420 Q 100 410 200 418 Q 300 408 400 420 Q 475 410 533 420 L 533 560 Z"
+              fill="#1a2b1e"/>
+
+        <!-- Fish shack on high ground (left side) -->
+        <g transform="translate(30 385) scale(1.6)">
+          <g class="fish-shack">
+            <path d="M15 35 L15 45 M45 35 L45 45" stroke="#2a1d15" stroke-width="2"/>
+            <rect x="10" y="20" width="40" height="15" fill="#5c4532"/>
+            <path d="M10 20 L30 8 L50 20 Z" fill="#f1e6cc"/>
+            <rect x="25" y="25" width="8" height="10" fill="#1c1a17"/>
+            <rect x="10" y="20" width="20" height="15" fill="#2a1d15" opacity="0.3"/>
+            <path d="M40 24 L44 24 L44 28 L40 28 Z" fill="#dcc699"/>
+          </g>
+        </g>
+
+        <!-- Short dock off fish shack -->
+        <g transform="translate(120 405) scale(1.4)">
+          <g class="dock-short">
+            <path d="M10 15 L10 28 M30 15 L30 28" stroke="#2a1d15" stroke-width="2.5"/>
+            <rect x="5" y="10" width="30" height="5" fill="#5c4532"/>
+            <rect x="5" y="10" width="15" height="5" fill="#2a1d15" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Boathouse on stilts (center of mainland, over water) -->
+        <g transform="translate(210 370) scale(1.4)">
+          <g class="boathouse-stilts">
+            <path d="M20 50 L20 65 M40 50 L40 65 M60 50 L60 65 M80 50 L80 65" stroke="#2a1d15" stroke-width="2"/>
+            <path d="M15 50 L85 50 L85 54 L15 54 Z" fill="#4a3628"/>
+            <path d="M25 50 L25 30 L75 30 L75 50 Z" fill="#5c4532"/>
+            <path d="M25 30 L50 15 L75 30 Z" fill="#dcc699"/>
+            <path d="M50 30 L50 50" stroke="#2a1d15" stroke-width="1.5"/>
+            <path d="M25 50 L50 50 L50 30 L25 30 Z" fill="#2a1d15" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Long dock extending out (near waterway) -->
+        <g transform="translate(360 415) scale(1.2)">
+          <g class="dock-long">
+            <path d="M10 15 L10 28 M28 15 L28 28 M46 15 L46 28 M64 15 L64 28 M82 15 L82 28 M100 15 L100 28" stroke="#2a1d15" stroke-width="2.5"/>
+            <rect x="5" y="10" width="100" height="5" fill="#5c4532"/>
+            <rect x="5" y="10" width="50" height="5" fill="#2a1d15" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Boat ramp (rightmost edge, angling into water) -->
+        <g transform="translate(465 415) scale(0.9)">
+          <g class="boat-ramp">
+            <path d="M5 25 L75 25 L75 5 Z" fill="#c4a66f"/>
+            <path d="M40 25 L75 25 L75 15 Z" fill="#dcc699" opacity="0.6"/>
+            <path d="M20 22 L25 24 M35 18 L40 20 M50 14 L55 16" stroke="#1c1a17" stroke-width="1.8" opacity="0.3"/>
+          </g>
+        </g>
+
+        <!-- Pickup truck near the ramp (weathered working truck) -->
+        <g transform="translate(380 390)">
+          <!-- Cab -->
+          <path d="M 0 12 L 0 4 Q 0 2 2 2 L 14 2 L 18 8 L 18 12 Z" fill="#4a3628"/>
+          <!-- Bed -->
+          <rect x="18" y="6" width="22" height="14" fill="#2a1d15"/>
+          <!-- Window -->
+          <path d="M 2 4 L 12 4 L 15 8 L 2 8 Z" fill="#7ca2ba" opacity="0.6"/>
+          <!-- Wheels -->
+          <circle cx="6" cy="20" r="3.5" fill="#1c1a17"/>
+          <circle cx="32" cy="20" r="3.5" fill="#1c1a17"/>
+          <!-- Weathered highlight -->
+          <path d="M 0 12 L 40 12 L 40 14 L 0 14 Z" fill="#dcc699" opacity="0.15"/>
+        </g>
+      </g>
+
+      <!-- ═══ WATERWAY (middle third, 533-1066) ═══ -->
+      <g>
+        <!-- Water (top raised to unified horizon y=340) -->
+        <rect x="533" y="340" width="533" height="220" fill="#4a7591"/>
+        <rect x="533" y="340" width="533" height="50" fill="#5e88a5" opacity="0.7"/>
+        <!-- Ripples -->
+        <g stroke="#8dafc4" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6">
+          <path class="ripple" d="M 570 430 q 12 -3 24 0 q 12 -3 24 0"/>
+          <path class="ripple ripple-2" d="M 720 460 q 14 -3 28 0 q 14 -3 28 0"/>
+          <path class="ripple ripple-3" d="M 870 440 q 12 -3 24 0 q 12 -3 24 0"/>
+          <path class="ripple" d="M 920 480 q 10 -2 20 0 q 10 -2 20 0"/>
+          <path class="ripple ripple-2" d="M 620 490 q 14 -3 28 0 q 14 -3 28 0"/>
+          <path class="ripple ripple-3" d="M 780 420 q 10 -2 20 0 q 10 -2 20 0"/>
+        </g>
+        <!-- SUP — Gemini version (standing paddler, scaled into existing wrapper position) -->
+        <g transform="translate(620 395)">
+          <g class="sup">
+            <g transform="scale(0.7)">
+              <g class="sup-paddler">
+                <path d="M10 40 Q30 43 50 40 L50 38 Q30 41 10 38 Z" fill="#f1e6cc"/>
+                <path d="M28 38 L32 38 L32 15 Q30 13 28 15 Z" fill="#1c1a17"/>
+                <circle cx="30" cy="12" r="3" fill="#1c1a17"/>
+                <path d="M31 18 L35 40" stroke="#1c1a17" stroke-width="1.8"/>
+                <path d="M30 38 Q40 39 50 38 L50 40 Q40 41 30 40 Z" fill="#dcc699" opacity="0.5"/>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- Kayak #1 — Gemini orange -->
+        <g transform="translate(800 435)">
+          <g class="kayak">
+            <g transform="scale(0.65)">
+              <g class="kayak-orange">
+                <path d="M5 22 Q40 28 75 22 Q40 24 5 22 Z" fill="#c24f2b"/>
+                <path d="M35 22 L45 22 L42 12 Q40 10 38 12 Z" fill="#1c1a17"/>
+                <circle cx="40" cy="10" r="3" fill="#1c1a17"/>
+                <path d="M30 18 L50 12" stroke="#1c1a17" stroke-width="1.8"/>
+                <path d="M40 22 Q55 23 75 22 Z" fill="#2a1d15" opacity="0.3"/>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- Kayak #2 — Gemini yellow (foreground) -->
+        <g transform="translate(700 465)">
+          <g class="kayak-2">
+            <g transform="scale(0.7)">
+              <g class="kayak-yellow">
+                <path d="M5 22 Q40 28 75 22 Q40 24 5 22 Z" fill="#e8b93a"/>
+                <path d="M35 22 L45 22 L42 12 Q40 10 38 12 Z" fill="#1c1a17"/>
+                <circle cx="40" cy="10" r="3" fill="#1c1a17"/>
+                <path d="M30 18 L50 12" stroke="#1c1a17" stroke-width="1.8"/>
+                <path d="M40 22 Q55 23 75 22 Z" fill="#2a1d15" opacity="0.3"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <!-- ═══ ISLAND (right third, 1066-1600) ═══ -->
+      <g>
+        <!-- Back maritime forest (flat horizon) -->
+        <path d="M 1066 420 L 1066 340 L 1600 340 L 1600 420 Z"
+              fill="#243b31"/>
+        <!-- Organic tree canopy silhouette above the horizon -->
+        <path d="M 1066 340 Q 1100 322 1140 330 Q 1180 315 1220 322 Q 1260 308 1300 318 Q 1340 302 1380 315 Q 1420 298 1460 312 Q 1500 305 1540 315 Q 1570 308 1600 318 L 1600 340 Z"
+              fill="#1c2f27"/>
+        <!-- Taller pine spires -->
+        <g fill="#15241d">
+          <path d="M 1200 312 L 1208 272 L 1216 312 Z"/>
+          <path d="M 1330 304 L 1340 268 L 1350 304 Z"/>
+          <path d="M 1470 302 L 1480 264 L 1490 302 Z"/>
+        </g>
+        <!-- Windswept shrubbery along the dune line -->
+        <g fill="#1a2d24" opacity="0.85">
+          <path d="M 1100 380 Q 1120 330 1160 350 Q 1140 385 1100 380"/>
+          <path d="M 1240 375 Q 1265 325 1300 345 Q 1280 380 1240 375"/>
+          <path d="M 1390 370 Q 1420 320 1460 340 Q 1440 375 1390 370"/>
+          <path d="M 1520 380 Q 1540 340 1570 355 Q 1555 385 1520 380"/>
+        </g>
+        <!-- Back dune (taller, distant) -->
+        <path d="M 1066 450 Q 1180 370 1310 365 Q 1450 360 1600 375 L 1600 520 L 1066 520 Z"
+              fill="#dcc699"/>
+        <!-- Front dune (foreground, slightly darker) -->
+        <path d="M 1066 480 Q 1200 420 1350 425 Q 1500 415 1600 435 L 1600 540 L 1066 540 Z"
+              fill="#c4a66f"/>
+        <!-- Low vegetation / scrub patches on sand -->
+        <g fill="#4d5d36" opacity="0.4">
+          <ellipse cx="1150" cy="460" rx="20" ry="4"/>
+          <ellipse cx="1280" cy="445" rx="25" ry="5"/>
+          <ellipse cx="1450" cy="455" rx="30" ry="6"/>
+          <ellipse cx="1320" cy="490" rx="15" ry="3"/>
+          <ellipse cx="1500" cy="500" rx="22" ry="4"/>
+        </g>
+        <!-- Near-shore water at the base of the island -->
+        <rect x="1066" y="520" width="534" height="40" fill="#3a5a6e"/>
+        <path d="M 1066 525 Q 1200 522 1350 527 Q 1500 524 1600 528"
+              stroke="#7ca2ba" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M 1100 540 q 10 -2 20 0 q 10 -2 20 0" stroke="#FFFFFF" stroke-width="1.2" fill="none" opacity="0.55"/>
+        <path d="M 1300 545 q 12 -2 24 0" stroke="#FFFFFF" stroke-width="1.2" fill="none" opacity="0.55"/>
+        <!-- Sabal palmettos above the tree canopy (adds island texture) -->
+        <g transform="translate(1140 280) scale(0.55)">
+          <g class="sabal-palmetto">
+            <path d="M28 80 Q30 40 32 15" stroke="#5c4532" stroke-width="4" fill="none"/>
+            <path d="M30 15 L10 5 M30 15 L50 5 M30 15 L5 25 M30 15 L55 25 M30 15 L15 40 M30 15 L45 40" stroke="#2d4a3e" stroke-width="2.5" fill="none"/>
+            <path d="M30 15 L30 45" stroke="#1e3529" stroke-width="2" fill="none"/>
+            <circle cx="30" cy="15" r="4" fill="#2d4a3e"/>
+          </g>
+        </g>
+        <g transform="translate(1370 290) scale(0.5)">
+          <g class="sabal-palmetto">
+            <path d="M28 80 Q30 40 32 15" stroke="#5c4532" stroke-width="4" fill="none"/>
+            <path d="M30 15 L10 5 M30 15 L50 5 M30 15 L5 25 M30 15 L55 25 M30 15 L15 40 M30 15 L45 40" stroke="#2d4a3e" stroke-width="2.5" fill="none"/>
+            <path d="M30 15 L30 45" stroke="#1e3529" stroke-width="2" fill="none"/>
+            <circle cx="30" cy="15" r="4" fill="#2d4a3e"/>
+          </g>
+        </g>
+
+        <!-- Sea oat clusters — upgraded to Gemini pack -->
+        <g transform="translate(1095 395) scale(0.7)">
+          <g class="sea-oats">
+            <path d="M20 50 Q15 25 5 10 M20 50 Q20 20 20 5 M20 50 Q25 25 35 15" stroke="#c4a66f" stroke-width="1.5" fill="none"/>
+            <path d="M2 8 L8 12 M18 2 L22 8 M32 12 L38 18" stroke="#dcc699" stroke-width="2"/>
+            <path d="M19 50 Q21 25 25 15" stroke="#c4a66f" stroke-width="1.5" fill="none" opacity="0.5"/>
+          </g>
+        </g>
+        <g transform="translate(1245 400) scale(0.8)">
+          <g class="sea-oats">
+            <path d="M20 50 Q15 25 5 10 M20 50 Q20 20 20 5 M20 50 Q25 25 35 15" stroke="#c4a66f" stroke-width="1.5" fill="none"/>
+            <path d="M2 8 L8 12 M18 2 L22 8 M32 12 L38 18" stroke="#dcc699" stroke-width="2"/>
+            <path d="M19 50 Q21 25 25 15" stroke="#c4a66f" stroke-width="1.5" fill="none" opacity="0.5"/>
+          </g>
+        </g>
+        <g transform="translate(1395 395) scale(0.7)">
+          <g class="sea-oats">
+            <path d="M20 50 Q15 25 5 10 M20 50 Q20 20 20 5 M20 50 Q25 25 35 15" stroke="#c4a66f" stroke-width="1.5" fill="none"/>
+            <path d="M2 8 L8 12 M18 2 L22 8 M32 12 L38 18" stroke="#dcc699" stroke-width="2"/>
+            <path d="M19 50 Q21 25 25 15" stroke="#c4a66f" stroke-width="1.5" fill="none" opacity="0.5"/>
+          </g>
+        </g>
+        <g transform="translate(1505 410) scale(0.65)">
+          <g class="sea-oats">
+            <path d="M20 50 Q15 25 5 10 M20 50 Q20 20 20 5 M20 50 Q25 25 35 15" stroke="#c4a66f" stroke-width="1.5" fill="none"/>
+            <path d="M2 8 L8 12 M18 2 L22 8 M32 12 L38 18" stroke="#dcc699" stroke-width="2"/>
+            <path d="M19 50 Q21 25 25 15" stroke="#c4a66f" stroke-width="1.5" fill="none" opacity="0.5"/>
+          </g>
+        </g>
+
+        <!-- Sand highlight (sun-lit strips) -->
+        <g fill="#f1e6cc" opacity="0.35">
+          <ellipse cx="1200" cy="450" rx="50" ry="3"/>
+          <ellipse cx="1450" cy="440" rx="70" ry="2"/>
+          <ellipse cx="1120" cy="480" rx="30" ry="2"/>
+          <ellipse cx="1380" cy="495" rx="40" ry="2"/>
+        </g>
+
+        <!-- Driftwood weathering on the beach -->
+        <g transform="translate(1180 495) scale(0.6)">
+          <g class="driftwood">
+            <path d="M5 20 Q30 15 55 18 L50 12 Q30 10 10 15 Z" fill="#dcc699"/>
+            <path d="M15 16 L12 5 M40 16 L45 8" stroke="#dcc699" stroke-width="2.5"/>
+            <path d="M10 18 Q30 14 50 16 L45 19 Q30 17 10 20 Z" fill="#c4a66f" opacity="0.5"/>
+          </g>
+        </g>
+
+        <!-- Ghost crab near a dune -->
+        <g transform="translate(1460 500) scale(0.5)">
+          <g class="ghost-crab">
+            <rect x="10" y="10" width="10" height="8" rx="2" fill="#f1e6cc"/>
+            <rect x="15" y="10" width="5" height="8" rx="1" fill="#dcc699"/>
+            <path d="M10 12 L5 10 M10 15 L4 15 M10 18 L5 20" stroke="#c4a66f" stroke-width="1.5"/>
+            <path d="M20 12 L25 10 M20 15 L26 15 M20 18 L25 20" stroke="#c4a66f" stroke-width="1.5"/>
+            <circle cx="13" cy="8" r="1" fill="#1c1a17"/>
+            <circle cx="17" cy="8" r="1" fill="#1c1a17"/>
+          </g>
+        </g>
+
+        <!-- Shorebird walking the tide line -->
+        <g transform="translate(1275 515) scale(0.45)">
+          <g class="shorebird-plover">
+            <path d="M15 22 L12 28 M18 22 L21 28" stroke="#1c1a17" stroke-width="1.5"/>
+            <path d="M5 15 Q10 5 22 12 Q28 15 22 22 Q10 25 5 15 Z" fill="#dcc699"/>
+            <path d="M22 14 L28 15 L22 16 Z" fill="#1c1a17"/>
+            <path d="M12 12 Q15 8 20 12 L15 18 Z" fill="#c4a66f"/>
+          </g>
+        </g>
+        <!-- Camp: A-frame tent tucked between dune and sea oats -->
+        <g class="tent" transform="translate(1330 462)">
+          <!-- Back face -->
+          <path d="M 4 28 L 24 2 L 44 28 Z" fill="#7a3f1f"/>
+          <!-- Front face (shadow side) -->
+          <path d="M 24 2 L 24 28 L 44 28 Z" fill="#5c2f16"/>
+          <!-- Entrance flap -->
+          <path d="M 24 12 L 20 26 L 24 26 Z" fill="#2a1208"/>
+          <!-- Stake lines -->
+          <line x1="4" y1="28" x2="0" y2="32" stroke="#1c1a17" stroke-width="0.5" opacity="0.5"/>
+          <line x1="44" y1="28" x2="48" y2="32" stroke="#1c1a17" stroke-width="0.5" opacity="0.5"/>
+        </g>
+      </g>
+    </svg>
+
+    <!-- Clickable zones with labels -->
+    <a href="#mainland" class="journey-zone" style="left:0; width:33.333%;">
+      <span class="zone-label">
+        <span class="material-symbols-outlined" style="font-size:14px;">forest</span>
+        Mainland
+      </span>
+    </a>
+    <a href="#crossing" class="journey-zone" style="left:33.333%; width:33.333%;">
+      <span class="zone-label">
+        <span class="material-symbols-outlined" style="font-size:14px;">sailing</span>
+        The Crossing
+      </span>
+    </a>
+    <a href="#island" class="journey-zone" style="left:66.666%; width:33.333%;">
+      <span class="zone-label">
+        <span class="material-symbols-outlined" style="font-size:14px;">beach_access</span>
+        The Island
+      </span>
+    </a>
+  </section>
+
+  <!-- ══════════ HERO TEXT ══════════ -->
+  <section class="bg-mb-cream relative paper-grain">
+    <div class="max-w-3xl mx-auto px-6 md:px-8 py-16 md:py-24 relative z-10">
+      <span class="font-label text-mb-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-4 block">Masonboro Island &middot; Coastal Field Guide</span>
+      <h1 class="font-headline text-4xl md:text-6xl lg:text-[3.5rem] font-extrabold tracking-tight text-mb-dark leading-[1.02] mb-6">
+        The mainland. The crossing. The island.
+      </h1>
+      <p class="font-body text-lg md:text-xl text-mb-ink-mid leading-relaxed max-w-2xl font-light">
+        Masonboro Island is eight miles of undeveloped barrier island between Wrightsville Beach and Carolina Beach &mdash; no roads, no bridges, boat access only. A state reserve, a wildlife sanctuary, and a trip that rewards planning. This is the field guide.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 1 — MAINLAND ══════════ -->
+  <section id="mainland" class="band-mainland relative paper-grain scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28 relative z-10">
+      <div class="mb-12 max-w-3xl">
+        <span class="font-label text-mb-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-3 block">01 &middot; Before You Go</span>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-mb-dark leading-[1.05] mb-5">Mainland prep.</h2>
+        <p class="text-lg text-mb-ink-mid leading-relaxed">Launch points, live tide and weather windows, what to bring, and the reserve rules that apply once you push off.</p>
+      </div>
+
+      <!-- Live data strip -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+        <!-- Tides card -->
+        <div class="data-card loading" id="tides-card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="material-symbols-outlined text-mb-sea">tide</span>
+            <span class="data-label">Live Tides &middot; Wrightsville Beach</span>
+          </div>
+          <div id="tides-content">
+            <p class="text-mb-ink-light text-sm">Loading NOAA predictions&hellip;</p>
+          </div>
+        </div>
+
+        <!-- Weather card -->
+        <div class="data-card loading" id="weather-card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="material-symbols-outlined text-mb-sea">partly_cloudy_day</span>
+            <span class="data-label">Live Weather &middot; Masonboro</span>
+          </div>
+          <div id="weather-content">
+            <p class="text-mb-ink-light text-sm">Loading Open-Meteo forecast&hellip;</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Launch points & packing -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <h3 class="font-headline text-xl font-extrabold text-mb-dark mb-4">Where to Launch</h3>
+          <div>
+            <div class="fact-row">
+              <div class="fact-key">Trails End</div>
+              <div class="fact-val">Public boat ramp at the south end of Masonboro Loop Rd. Kayak and small-boat friendly. Limited parking.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Wrightsville Beach</div>
+              <div class="fact-val">Small craft launch at Banks Channel. Good for paddlecraft and shorter crossings to the north end of the island.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Carolina Beach</div>
+              <div class="fact-val">Inlet-side ramps for boats. Longer run to Masonboro but quick water once you're in.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Charter</div>
+              <div class="fact-val">Several local shuttles and charters drop visitors on the island. Worth it for overnight or family trips.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-headline text-xl font-extrabold text-mb-dark mb-4">What to Bring</h3>
+          <ul class="checklist">
+            <li>Water &mdash; more than you think. There's none on the island.</li>
+            <li>Sun protection: hat, sunscreen, long sleeves for exposure</li>
+            <li>Insect repellent (late spring through fall especially)</li>
+            <li>Shoes that can handle wet sand, shell, and marsh mud</li>
+            <li>Dry bag for phone, keys, wallet</li>
+            <li>PFD for anyone in a paddlecraft (required)</li>
+            <li>Trash bag &mdash; you pack out what you bring in</li>
+            <li>Navigation: offline map or compass; phone signal is spotty</li>
+            <li>Tide chart or a plan around the window below</li>
+          </ul>
+          <div class="mt-6 bg-mb-accent/5 border-l-4 border-mb-accent p-4">
+            <p class="font-label text-[10px] uppercase tracking-widest text-mb-accent mb-2">Overnight Only</p>
+            <p class="text-sm text-mb-ink-mid leading-relaxed">Camping is permitted in designated areas. Add: tent, sleeping pad + bag, headlamp, stove + fuel (no ground fires), food in sealed containers, extra water for the night, layers for temperature swings.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reserve rules -->
+      <div class="mt-12 bg-white border border-mb-rule p-6 md:p-8">
+        <h3 class="font-headline text-lg font-extrabold text-mb-dark mb-4">Reserve Rules at a Glance</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10">
+          <ul class="checklist">
+            <li>Dogs allowed on leash; cleanup required</li>
+            <li>No ground fires &mdash; contained stoves only</li>
+            <li>No motor vehicles on the island</li>
+            <li>No harvesting native vegetation or shells at scale</li>
+          </ul>
+          <ul class="checklist">
+            <li>Sea turtle nest areas are marked &mdash; avoid</li>
+            <li>Stay out of dune grass (it's stabilizing the island)</li>
+            <li>Pack out all trash including food scraps</li>
+            <li>Bird nesting areas may be seasonally closed</li>
+          </ul>
+        </div>
+        <p class="mt-5 font-label text-[10px] uppercase tracking-widest text-mb-ink-light">Masonboro Island is a N.C. National Estuarine Research Reserve component &middot; check current rules before you go</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 2 — THE CROSSING ══════════ -->
+  <section id="crossing" class="band-crossing relative scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28 relative z-10">
+      <div class="mb-12 max-w-3xl">
+        <span class="font-label text-mb-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-3 block">02 &middot; The Crossing</span>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-mb-dark leading-[1.05] mb-5">The waterway.</h2>
+        <p class="text-lg text-mb-ink-mid leading-relaxed">The crossing is the trip. The Intracoastal Waterway runs the length of the island's back side &mdash; busy, tidal, shallow in places, with a real channel to respect.</p>
+      </div>
+
+      <!-- Vessel cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div class="data-card">
+          <span class="material-symbols-outlined text-mb-sea text-2xl mb-3">kayaking</span>
+          <h3 class="font-headline text-lg font-bold mb-2">Kayak / SUP</h3>
+          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Most common way across. Plan for 30&ndash;60 min from Trails End depending on tide and current.</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Launch with tide &middot; PFD required</p>
+        </div>
+        <div class="data-card">
+          <span class="material-symbols-outlined text-mb-sea text-2xl mb-3">sailing</span>
+          <h3 class="font-headline text-lg font-bold mb-2">Small Boat</h3>
+          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Faster, more gear capacity, easier return. Anchor in the lee of the island off a sandbar.</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Watch channel &middot; shallow at low</p>
+        </div>
+        <div class="data-card">
+          <span class="material-symbols-outlined text-mb-sea text-2xl mb-3">directions_boat</span>
+          <h3 class="font-headline text-lg font-bold mb-2">Charter / Shuttle</h3>
+          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Drop-off service runs from several local operators. Best for families, overnights, or if you don't have a boat.</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Pre-book &middot; weather-dependent</p>
+        </div>
+        <div class="data-card">
+          <span class="material-symbols-outlined text-mb-sea text-2xl mb-3">surfing</span>
+          <h3 class="font-headline text-lg font-bold mb-2">Surfboard / Swim</h3>
+          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Experienced only. Swim crossings happen but the ICW is a working channel with real boat traffic.</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Know your limits</p>
+        </div>
+      </div>
+
+      <!-- Hazards / conditions -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div>
+          <h3 class="font-headline text-xl font-extrabold text-mb-dark mb-4">What to Watch For</h3>
+          <div>
+            <div class="fact-row">
+              <div class="fact-key">Current</div>
+              <div class="fact-val">Tidal current in the ICW runs hard on the ebb and flood. Plan to cross on slack tide or with the current behind you, not against it.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Channel Traffic</div>
+              <div class="fact-val">Powerboats, fishing charters, and big cruisers run the ICW all day. Cross at a right angle, quickly, and make yourself visible.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Depth</div>
+              <div class="fact-val">Shallow outside the marked channel, especially at low tide. Sandbars shift. A paddle depth check beats a prop strike.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Wind Chop</div>
+              <div class="fact-val">A 15-knot wind across the ICW makes a paddle crossing miserable. Check the weather card above before committing.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Return Timing</div>
+              <div class="fact-val">The return is harder than people plan for. Don't get stranded by a tide you didn't account for.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-mb-rule p-6 md:p-8">
+          <h3 class="font-headline text-lg font-extrabold text-mb-dark mb-4">The Rule of the Crossing</h3>
+          <p class="text-mb-ink-mid leading-relaxed mb-4">
+            You're on a working river. The ICW connects Key West to Maine and everything that moves between. Big boats have right of way over small ones, and small motorized boats have right of way over paddlecraft.
+          </p>
+          <p class="text-mb-ink-mid leading-relaxed mb-4">
+            Cross perpendicular, cross quickly, and if you're in a kayak, cross between traffic &mdash; not in front of it.
+          </p>
+          <div class="pt-4 border-t border-mb-rule">
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light mb-1">Emergency</p>
+            <p class="text-sm text-mb-ink-mid">VHF Channel 16 for the Coast Guard. 911 works from most of the waterway.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SECTION 3 — ON THE ISLAND ══════════ -->
+  <section id="island" class="band-island relative scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28 relative z-10">
+      <div class="mb-12 max-w-3xl">
+        <span class="font-label text-mb-accent text-[11px] font-bold uppercase tracking-[0.3em] mb-3 block">03 &middot; On the Island</span>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-mb-dark leading-[1.05] mb-5">Once you're across.</h2>
+        <p class="text-lg text-mb-ink-mid leading-relaxed">Eight miles of undeveloped barrier island. Open ocean on one side, salt marsh and ICW on the other. What to do, what to watch for, and how to leave it how you found it.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
+        <!-- Wildlife -->
+        <div class="bg-white border border-mb-rule p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">pets</span>
+            <h3 class="font-headline text-lg font-extrabold text-mb-dark">Wildlife</h3>
+          </div>
+          <div>
+            <div class="fact-row">
+              <div class="fact-key">Shorebirds</div>
+              <div class="fact-val">Plovers, terns, oystercatchers, pelicans. Nesting areas are marked and may be closed seasonally. Give them distance.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Sea Turtles</div>
+              <div class="fact-val">Loggerheads nest May&ndash;August. Nest areas are fenced and staked. Never approach a nest or a turtle at night &mdash; use red-filtered light only.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Ghost Crabs</div>
+              <div class="fact-val">Active at night and at dusk. Small holes in the wrack line are burrows. Fun to watch with a red light; leave them be.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Alligators</div>
+              <div class="fact-val">Occasional in brackish ponds on the island interior. Give distance. They don't bother you if you don't bother them.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Dolphins</div>
+              <div class="fact-val">Common in the ICW and sometimes the surf zone. A good morning trip reward.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activities -->
+        <div class="bg-white border border-mb-rule p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-sea">explore</span>
+            <h3 class="font-headline text-lg font-extrabold text-mb-dark">What to Do</h3>
+          </div>
+          <div>
+            <div class="fact-row">
+              <div class="fact-key">Beachcombing</div>
+              <div class="fact-val">Shelling is excellent after storms. Whelk, scotch bonnet, sand dollars. Take a few; leave live animals.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Surfing</div>
+              <div class="fact-val">Uncrowded breaks along the 8 miles of Atlantic shore. Best on south or east swell.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Walking</div>
+              <div class="fact-val">The whole island is walkable at low tide. Plan a route that doesn't maroon you at the far end.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Camping</div>
+              <div class="fact-val">Permitted in designated areas. Primitive &mdash; pack everything in and out. See reserve rules above.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Night Sky</div>
+              <div class="fact-val">One of the darker coastal stretches in the region. Rocket launches and meteor showers are genuinely worth the night trip. See the section below.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leave No Trace -->
+      <div class="bg-mb-dark text-mb-cream p-8 md:p-12">
+        <div class="max-w-3xl">
+          <span class="font-label text-mb-accent-light text-[11px] font-bold uppercase tracking-[0.3em] mb-3 block">Leave It Right</span>
+          <h3 class="font-headline text-2xl md:text-3xl font-bold mb-5">Masonboro works because people treat it right.</h3>
+          <p class="text-mb-cream/70 leading-relaxed mb-4">
+            There's no staff, no ranger walking the beach, no bathrooms to ask about. The island works because visitors don't dump trash, don't cut through dunes, don't mess with nests, and don't leave anything behind.
+          </p>
+          <p class="text-mb-cream/70 leading-relaxed">
+            Pack it out. Every bottle, every wrapper, every trace. If you find something that shouldn't be there, take it too. The next family on this sandbar is counting on you.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TONIGHT'S SKY ══════════ -->
+  <section id="tonight" class="band-night relative overflow-hidden scroll-mt-20">
+    <div class="absolute inset-0 pointer-events-none opacity-70" id="stars-tonight"></div>
+    <div class="max-w-5xl mx-auto px-6 md:px-8 py-20 md:py-28 relative z-10">
+      <div class="mb-12 max-w-3xl">
+        <span class="font-label text-mb-accent-light text-[11px] font-bold uppercase tracking-[0.3em] mb-3 block">Tonight's Sky</span>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight text-mb-cream leading-[1.05] mb-5">
+          What's up there <span id="tonight-date"></span>.
+        </h2>
+        <p class="text-lg text-mb-cream/70 leading-relaxed mb-5">
+          Masonboro faces open ocean with no city glow to the east. The dark-sky viewing is the other reason to go &mdash; and when there's a rocket launch from Cape Canaveral or a meteor shower peaking, it's the reason.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://www.cleardarksky.com/c/Wlmgtn1NCkey.html?1" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 bg-white/5 border border-white/15 hover:border-mb-accent-light hover:text-mb-accent-light text-mb-cream/80 px-4 py-2 rounded-full font-label text-[11px] font-bold uppercase tracking-widest transition-all">
+            <span class="material-symbols-outlined text-base">open_in_new</span>
+            Clear Dark Sky &middot; Wilmington NC
+          </a>
+          <a href="https://www.timeanddate.com/astronomy/@4487042" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 bg-white/5 border border-white/15 hover:border-mb-accent-light hover:text-mb-accent-light text-mb-cream/80 px-4 py-2 rounded-full font-label text-[11px] font-bold uppercase tracking-widest transition-all">
+            <span class="material-symbols-outlined text-base">open_in_new</span>
+            Wilmington Astronomy
+          </a>
+        </div>
+      </div>
+
+      <!-- Imminent launch alert (populated by JS when a visible launch is within 36h) -->
+      <div id="launch-alert" class="hidden mb-8 bg-mb-accent/15 border border-mb-accent/40 rounded-lg p-6 md:p-8 relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-mb-accent/10 pointer-events-none"></div>
+        <div class="flex items-start gap-4 relative z-10">
+          <span class="material-symbols-outlined text-mb-accent-light text-3xl md:text-4xl mt-1" id="alert-icon">rocket_launch</span>
+          <div class="flex-1 min-w-0">
+            <p class="font-label text-[10px] md:text-[11px] font-bold uppercase tracking-[0.25em] text-mb-accent-light mb-1" id="alert-label">Imminent Launch</p>
+            <h3 class="font-headline text-xl md:text-2xl font-bold text-mb-cream mb-2 leading-tight" id="alert-name">&mdash;</h3>
+            <p class="text-mb-cream/85 text-sm md:text-base mb-2" id="alert-when">&mdash;</p>
+            <p class="text-mb-cream/50 text-xs leading-relaxed" id="alert-detail">&mdash;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+        <!-- Moon phase -->
+        <div class="bg-white/5 border border-white/10 p-6 rounded">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-accent-light">brightness_3</span>
+            <span class="data-label text-mb-cream/50">Moon Tonight</span>
+          </div>
+          <p class="font-headline text-2xl font-bold text-mb-cream mb-1" id="moon-phase-name">&mdash;</p>
+          <p class="text-mb-cream/60 text-sm" id="moon-phase-info">Calculating&hellip;</p>
+        </div>
+
+        <!-- Meteor calendar -->
+        <div class="bg-white/5 border border-white/10 p-6 rounded">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-accent-light">flare</span>
+            <span class="data-label text-mb-cream/50">Next Meteor Peak</span>
+          </div>
+          <p class="font-headline text-2xl font-bold text-mb-cream mb-1" id="meteor-name">&mdash;</p>
+          <p class="text-mb-cream/60 text-sm" id="meteor-info">&hellip;</p>
+        </div>
+
+        <!-- Sunset/rise -->
+        <div class="bg-white/5 border border-white/10 p-6 rounded">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-accent-light">wb_twilight</span>
+            <span class="data-label text-mb-cream/50">Sun &amp; Twilight</span>
+          </div>
+          <p class="text-sm text-mb-cream/70 leading-relaxed" id="sun-info">Loading&hellip;</p>
+        </div>
+      </div>
+
+      <!-- Launches -->
+      <div class="bg-white/5 border border-white/10 p-6 md:p-8 rounded" id="launches-card">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="material-symbols-outlined text-mb-accent-light">rocket_launch</span>
+          <span class="data-label text-mb-cream/50">Upcoming Florida Launches</span>
+          <span class="text-mb-cream/30 font-label text-[10px] ml-auto">via Launch Library 2</span>
+        </div>
+        <div id="launches-content">
+          <p class="text-mb-cream/50 text-sm">Loading launch schedule&hellip;</p>
+        </div>
+        <p class="mt-5 pt-5 border-t border-white/10 text-mb-cream/50 text-xs leading-relaxed">
+          Launches from Cape Canaveral and Kennedy Space Center are frequently visible from the Masonboro shoreline, looking south-southwest. Visibility depends on launch trajectory, time of day, and cloud cover. On a clear night, a good launch is unforgettable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ EMAIL CAPTURE ══════════ -->
+  <section class="bg-mb-cream relative paper-grain">
+    <div class="max-w-3xl mx-auto px-6 md:px-8 py-20 md:py-28 text-center relative z-10">
+      <span class="material-symbols-outlined text-mb-accent text-4xl mb-4">mail</span>
+      <h2 class="font-headline text-3xl md:text-4xl font-extrabold tracking-tight text-mb-dark mb-4">
+        Field notes from Masonboro.
+      </h2>
+      <p class="text-mb-ink-mid leading-relaxed mb-10 max-w-lg mx-auto">
+        Occasional updates from the island &mdash; tide windows worth planning around, launch-visible weather, conditions, resources as they're built. No spam.
+      </p>
+
+      <div id="signup-form-wrap">
+        <form id="signup-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="return submitEmail(event)">
+          <input type="email" required autocomplete="email" placeholder="your@email.com"
+            class="flex-1 border border-mb-ink/10 bg-white px-5 py-4 font-label text-sm text-mb-ink focus:ring-2 focus:ring-mb-accent/30 focus:border-mb-accent rounded">
+          <button type="submit" class="bg-mb-dark text-mb-cream px-8 py-4 font-label text-[11px] font-bold uppercase tracking-widest hover:bg-mb-teal transition-all whitespace-nowrap rounded">
+            Send Updates
+          </button>
+        </form>
+        <p class="mt-3 font-label text-[10px] uppercase tracking-widest text-mb-ink-light" id="signup-status">&nbsp;</p>
+      </div>
+
+      <div id="signup-success" class="hidden">
+        <div class="bg-white border border-mb-accent/20 rounded p-6 max-w-lg mx-auto">
+          <div class="flex items-center gap-4 justify-center">
+            <span class="material-symbols-outlined text-mb-accent text-3xl">check_circle</span>
+            <div class="text-left">
+              <p class="font-headline font-bold text-mb-dark">You're on the list.</p>
+              <p class="text-mb-ink-mid text-sm">Field notes incoming as conditions change.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="bg-mb-dark text-white/70 py-16">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto px-6 md:px-8">
+    <div class="md:col-span-2">
+      <div class="text-lg font-semibold text-white font-headline mb-4">Masonboro Island Coastal Field Station</div>
+      <p class="text-white/50 font-body text-sm max-w-md leading-relaxed mb-4">
+        A public field guide for Masonboro Island &mdash; the undeveloped barrier island south of Wrightsville Beach, North Carolina. A state reserve and wildlife sanctuary.
+      </p>
+      <p class="font-label text-[10px] uppercase tracking-widest text-white/30">
+        New Hanover County, NC &middot; Part of the N.C. National Estuarine Research Reserve
+      </p>
+    </div>
+    <div>
+      <h5 class="font-label text-[11px] uppercase tracking-widest text-mb-accent font-bold mb-6">Sibling Sites</h5>
+      <ul class="space-y-3">
+        <li><a href="https://sharktoothisland.org" target="_blank" rel="noopener" class="text-white/50 font-body text-sm hover:text-white transition-colors">SharkToothIsland.org &rarr;</a></li>
+        <li><a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 font-body text-sm hover:text-white transition-colors">Mozy Outdoors &rarr;</a></li>
+        <li><a href="mailto:hello@masonboroisland.org" class="text-white/50 font-body text-sm hover:text-white transition-colors">hello@masonboroisland.org</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="max-w-5xl mx-auto px-6 md:px-8 mt-12 pt-6 border-t border-white/10 font-label text-[10px] uppercase tracking-widest text-white/25">
+    &copy; 2026 Masonboro Island Coastal Field Station &middot; A field project by <a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 hover:text-white">Mozy Outdoors</a>
+  </p>
+</footer>
+
+<!-- ══════════ SCRIPTS ══════════ -->
+<script>
+// ═══ CONFIG ═══
+const NOAA_STATION = '8658163'; // Wrightsville Beach, NC
+const LAT = 34.115;
+const LON = -77.845;
+
+// ═══ DATE HELPERS ═══
+function today() { return new Date(); }
+function fmtNoaa(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}${m}${day}`;
+}
+function fmtTime(iso) {
+  const d = new Date(iso);
+  let h = d.getHours();
+  const m = String(d.getMinutes()).padStart(2,'0');
+  const ampm = h >= 12 ? 'pm' : 'am';
+  h = h % 12 || 12;
+  return `${h}:${m} ${ampm}`;
+}
+function fmtDay(d) { return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); }
+
+// Set "tonight" date on the page
+(function setTonightDate() {
+  const el = document.getElementById('tonight-date');
+  if (!el) return;
+  const d = today();
+  el.textContent = '· ' + fmtDay(d);
+})();
+
+// ═══ STARFIELD ═══
+(function generateStars() {
+  const el = document.getElementById('stars-tonight');
+  if (!el) return;
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.style.cssText = `position:absolute;background:#FDFBF0;border-radius:50%;`;
+    const size = (Math.random() * 1.8) + 0.8;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 100) + '%';
+    s.style.opacity = 0.3 + Math.random() * 0.7;
+    s.style.animation = `twinkle ${3 + Math.random()*4}s ease-in-out ${Math.random()*5}s infinite`;
+    frag.appendChild(s);
+  }
+  el.appendChild(frag);
+})();
+
+// Twinkle keyframes inline
+const styleEl = document.createElement('style');
+styleEl.textContent = `@keyframes twinkle { 0%,100% { opacity:.25; transform:scale(0.9);} 50% { opacity:1; transform:scale(1.2);} }`;
+document.head.appendChild(styleEl);
+
+// ═══ MOON PHASE (client-computed) ═══
+function moonPhase(date) {
+  const known = new Date('2000-01-06');
+  const diff = (date - known) / (1000*60*60*24);
+  const lunations = diff / 29.530588853;
+  const phase = lunations - Math.floor(lunations);
+  const illum = Math.round((1 - Math.cos(phase * 2 * Math.PI)) / 2 * 100);
+  let name;
+  if (phase < 0.03 || phase > 0.97) name = 'New Moon';
+  else if (phase < 0.22) name = 'Waxing Crescent';
+  else if (phase < 0.28) name = 'First Quarter';
+  else if (phase < 0.47) name = 'Waxing Gibbous';
+  else if (phase < 0.53) name = 'Full Moon';
+  else if (phase < 0.72) name = 'Waning Gibbous';
+  else if (phase < 0.78) name = 'Last Quarter';
+  else name = 'Waning Crescent';
+  return { name, illum };
+}
+(function renderMoon() {
+  const { name, illum } = moonPhase(today());
+  document.getElementById('moon-phase-name').textContent = name;
+  // Dark-sky interference
+  const skyLine = illum < 25 ? 'Dark-sky viewing good.' : illum < 60 ? 'Some moon interference.' : 'Bright; dim meteors washed out.';
+  // Rough visibility window by phase — when is the moon actually UP tonight?
+  let upLine;
+  if (name === 'New Moon')              upLine = 'Not visible — dark all night.';
+  else if (name === 'Waxing Crescent')  upLine = 'Up in early evening, sets before midnight.';
+  else if (name === 'First Quarter')    upLine = 'Up from sunset through midnight.';
+  else if (name === 'Waxing Gibbous')   upLine = 'Up from evening through pre-dawn.';
+  else if (name === 'Full Moon')        upLine = 'Up all night — rises at sunset, sets at sunrise.';
+  else if (name === 'Waning Gibbous')   upLine = 'Rises late evening, up most of the night.';
+  else if (name === 'Last Quarter')     upLine = 'Rises near midnight, up through sunrise.';
+  else if (name === 'Waning Crescent')  upLine = 'Up only in pre-dawn hours.';
+  else                                   upLine = '';
+  document.getElementById('moon-phase-info').innerHTML =
+    `${illum}% illuminated &middot; ${skyLine}<br>` +
+    `<span class="text-mb-cream/45 text-xs">${upLine}</span>`;
+})();
+
+// ═══ METEOR CALENDAR (hardcoded annual peaks) ═══
+const METEOR_SHOWERS = [
+  { name: 'Quadrantids',        peak: '01-04', rate: 40 },
+  { name: 'Lyrids',             peak: '04-22', rate: 18 },
+  { name: 'Eta Aquariids',      peak: '05-06', rate: 30 },
+  { name: 'Perseids',           peak: '08-12', rate: 60 },
+  { name: 'Orionids',           peak: '10-21', rate: 20 },
+  { name: 'Leonids',            peak: '11-17', rate: 15 },
+  { name: 'Geminids',           peak: '12-14', rate: 75 },
+  { name: 'Ursids',             peak: '12-22', rate: 10 }
+];
+(function renderNextMeteor() {
+  const now = today();
+  const y = now.getFullYear();
+  const upcoming = METEOR_SHOWERS
+    .map(s => {
+      const [mo, da] = s.peak.split('-').map(Number);
+      let d = new Date(y, mo-1, da);
+      if (d < now) d = new Date(y+1, mo-1, da);
+      return { ...s, date: d };
+    })
+    .sort((a, b) => a.date - b.date);
+  const next = upcoming[0];
+  const daysAway = Math.round((next.date - now) / (1000*60*60*24));
+  document.getElementById('meteor-name').textContent = next.name;
+  const when = daysAway === 0 ? 'Peaks tonight' : daysAway === 1 ? 'Peaks tomorrow' : `Peaks ${fmtDay(next.date)} · ${daysAway} days`;
+  document.getElementById('meteor-info').textContent = `${when} · ~${next.rate}/hr at peak`;
+})();
+
+// ═══ SUN / TWILIGHT (computed for Masonboro lat/lon) ═══
+function sunTimes(date, lat, lon) {
+  // Simple sunrise/sunset calc via NOAA-style approximation
+  const rad = Math.PI / 180;
+  const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+  const decl = 23.45 * Math.sin(rad * (360/365) * (dayOfYear - 81));
+  const latRad = lat * rad;
+  const declRad = decl * rad;
+  const ha = Math.acos(-Math.tan(latRad) * Math.tan(declRad)) / rad;
+  const solarNoon = 12 - (lon / 15);
+  const sunriseUTC = solarNoon - ha / 15;
+  const sunsetUTC = solarNoon + ha / 15;
+  // Convert from UTC to local (handles DST automatically via Date)
+  const makeLocal = (hoursUTC) => {
+    const h = Math.floor(hoursUTC);
+    const m = Math.round((hoursUTC - h) * 60);
+    const utc = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), h, m));
+    return utc;
+  };
+  return {
+    sunrise: makeLocal(sunriseUTC),
+    sunset:  makeLocal(sunsetUTC)
+  };
+}
+(function renderSun() {
+  const { sunrise, sunset } = sunTimes(today(), LAT, LON);
+  const el = document.getElementById('sun-info');
+  if (!el) return;
+  el.innerHTML =
+    `Sunrise <strong class="text-mb-cream">${fmtTime(sunrise)}</strong> &middot; ` +
+    `Sunset <strong class="text-mb-cream">${fmtTime(sunset)}</strong><br>` +
+    `<span class="text-mb-cream/50 text-xs">Astronomical dark ~90 min after sunset</span>`;
+})();
+
+// ═══ NOAA TIDES ═══
+async function loadTides() {
+  const card = document.getElementById('tides-card');
+  const content = document.getElementById('tides-content');
+  try {
+    const d = today();
+    const begin = fmtNoaa(d);
+    const tomorrow = new Date(d);
+    tomorrow.setDate(tomorrow.getDate() + 2);
+    const end = fmtNoaa(tomorrow);
+    const url = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=${begin}&end_date=${end}&station=${NOAA_STATION}&product=predictions&datum=MLLW&interval=hilo&units=english&time_zone=lst_ldt&format=json`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.predictions || !data.predictions.length) throw new Error('no data');
+    // Show next 4 high/low
+    const now = Date.now();
+    const future = data.predictions.filter(p => new Date(p.t) > now).slice(0, 4);
+    content.innerHTML = future.map(p => {
+      const d2 = new Date(p.t);
+      const isHigh = p.type === 'H';
+      return `
+        <div class="flex items-center justify-between py-2 border-b border-mb-rule last:border-b-0">
+          <div>
+            <span class="tide-pill ${isHigh ? 'high' : 'low'}">
+              <span class="material-symbols-outlined" style="font-size:12px;">${isHigh ? 'north' : 'south'}</span>
+              ${isHigh ? 'High' : 'Low'}
+            </span>
+            <span class="ml-2 font-label text-xs text-mb-ink-light uppercase tracking-wider">${fmtDay(d2)}</span>
+          </div>
+          <div class="text-right">
+            <div class="font-headline font-bold text-mb-dark text-base">${fmtTime(p.t)}</div>
+            <div class="font-label text-[10px] uppercase tracking-wider text-mb-ink-light">${parseFloat(p.v).toFixed(1)} ft</div>
+          </div>
+        </div>`;
+    }).join('');
+    card.classList.remove('loading');
+  } catch (e) {
+    content.innerHTML = `<p class="text-mb-bad text-sm">Couldn't load NOAA tides. <a href="https://tidesandcurrents.noaa.gov/stationhome.html?id=8658163" target="_blank" rel="noopener" class="underline">Check directly</a>.</p>`;
+    card.classList.remove('loading');
+  }
+}
+
+// ═══ OPEN-METEO WEATHER ═══
+const WMO_CODE = {
+  0:'Clear sky', 1:'Mostly clear', 2:'Partly cloudy', 3:'Overcast',
+  45:'Fog', 48:'Icy fog',
+  51:'Light drizzle', 53:'Drizzle', 55:'Heavy drizzle',
+  61:'Light rain', 63:'Rain', 65:'Heavy rain',
+  71:'Light snow', 73:'Snow', 75:'Heavy snow',
+  80:'Rain showers', 81:'Heavy rain showers', 82:'Violent rain showers',
+  95:'Thunderstorm', 96:'Thunderstorm w/ hail', 99:'Severe thunderstorm'
+};
+async function loadWeather() {
+  const card = document.getElementById('weather-card');
+  const content = document.getElementById('weather-content');
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&hourly=temperature_2m,weather_code,wind_speed_10m,wind_gusts_10m,cloud_cover,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FNew_York&forecast_days=2`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const cw = data.current_weather;
+    const code = cw.weathercode;
+    const desc = WMO_CODE[code] || 'Unknown';
+    // Next 12 hours aggregates
+    const now = new Date();
+    const nowIdx = data.hourly.time.findIndex(t => new Date(t) >= now);
+    const slice = data.hourly.temperature_2m.slice(nowIdx, nowIdx + 12);
+    const winds = data.hourly.wind_speed_10m.slice(nowIdx, nowIdx + 12);
+    const gusts = (data.hourly.wind_gusts_10m || []).slice(nowIdx, nowIdx + 12);
+    const clouds = data.hourly.cloud_cover.slice(nowIdx, nowIdx + 12);
+    const humidity = (data.hourly.relative_humidity_2m || []).slice(nowIdx, nowIdx + 12);
+    const precipProb = (data.hourly.precipitation_probability || []).slice(nowIdx, nowIdx + 12);
+    const avg = arr => arr.length ? Math.round(arr.reduce((a,b)=>a+b,0)/arr.length) : 0;
+    const mx  = arr => arr.length ? Math.max(...arr) : 0;
+    const tMin = Math.round(Math.min(...slice));
+    const tMax = Math.round(Math.max(...slice));
+    const avgWind = avg(winds);
+    const maxGust = Math.round(mx(gusts));
+    const avgCloud = avg(clouds);
+    const avgHumid = avg(humidity);
+    const maxPrecip = Math.round(mx(precipProb));
+
+    // Dark-sky rating: blend cloud + humidity + precip probability
+    // Rain forecast dominates; haze (humidity) degrades; clouds define baseline
+    let skyQual;
+    if (maxPrecip >= 40)      skyQual = { label:'Poor',      color:'mb-bad',  why:'rain in forecast' };
+    else if (avgCloud >= 65)  skyQual = { label:'Poor',      color:'mb-bad',  why:'mostly cloudy' };
+    else if (avgCloud >= 40)  skyQual = { label:'Fair',      color:'mb-warn', why:'broken clouds' };
+    else if (avgHumid >= 85)  skyQual = { label:'Fair',      color:'mb-warn', why:'haze / high humidity' };
+    else if (avgCloud < 20 && avgHumid < 70)
+                              skyQual = { label:'Excellent', color:'mb-good', why:'clear + dry' };
+    else                      skyQual = { label:'Good',      color:'mb-good', why:'mostly clear' };
+
+    content.innerHTML = `
+      <div class="flex items-baseline justify-between mb-3">
+        <div>
+          <span class="font-headline text-3xl font-extrabold text-mb-dark">${Math.round(cw.temperature)}&deg;</span>
+          <span class="text-mb-ink-mid text-sm ml-2">${desc}</span>
+        </div>
+        <div class="text-right">
+          <div class="font-label text-[10px] uppercase tracking-wider text-mb-ink-light">Wind</div>
+          <div class="font-headline font-bold text-mb-dark">${Math.round(cw.windspeed)} mph${maxGust > Math.round(cw.windspeed) + 5 ? ` <span class="text-xs text-mb-ink-light">(gusts ${maxGust})</span>` : ''}</div>
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-2 pt-3 border-t border-mb-rule text-center">
+        <div>
+          <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Cloud</div>
+          <div class="font-headline font-bold text-mb-dark text-sm">${avgCloud}%</div>
+        </div>
+        <div>
+          <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Humid</div>
+          <div class="font-headline font-bold text-mb-dark text-sm">${avgHumid}%</div>
+        </div>
+        <div>
+          <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Rain</div>
+          <div class="font-headline font-bold text-mb-dark text-sm">${maxPrecip}%</div>
+        </div>
+        <div>
+          <div class="font-label text-[9px] uppercase tracking-wider text-mb-ink-light mb-0.5">Dark Sky</div>
+          <div class="font-headline font-bold text-${skyQual.color} text-sm">${skyQual.label}</div>
+        </div>
+      </div>
+      <p class="mt-3 pt-3 border-t border-mb-rule text-[11px] text-mb-ink-light leading-relaxed">
+        <span class="font-label uppercase tracking-wider text-[9px]">Why ${skyQual.label.toLowerCase()}:</span> ${skyQual.why}.
+        For astronomer-grade forecast see
+        <a href="https://www.cleardarksky.com/c/Wlmgtn1NCkey.html?1" target="_blank" rel="noopener" class="text-mb-accent underline">Clear Dark Sky &middot; Wilmington&nbsp;NC</a>.
+      </p>`;
+    card.classList.remove('loading');
+  } catch (e) {
+    content.innerHTML = `<p class="text-mb-bad text-sm">Couldn't load weather. Check Open-Meteo directly.</p>`;
+    card.classList.remove('loading');
+  }
+}
+
+// ═══ LAUNCH LIBRARY 2 ═══
+async function loadLaunches() {
+  const content = document.getElementById('launches-content');
+  try {
+    // Free endpoint, no key needed
+    const url = `https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=50&mode=list`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.results) throw new Error('no data');
+    // Filter to Florida launches (Cape Canaveral / Kennedy) — most visible from NC coast.
+    // NOTE: mode=list flattens the response — location/pad/lsp_name are direct strings.
+    const florida = data.results.filter(l => {
+      return /Cape Canaveral|Kennedy/i.test(l.location || '');
+    });
+
+    // Further gate: only NIGHT launches are meaningfully visible from Masonboro.
+    // A "night launch" is one where the T-0 falls between 30 min before sunset
+    // and 30 min after sunrise at Masonboro on the launch date.
+    const bufferMs = 30 * 60 * 1000;
+    const isNightVisible = (net) => {
+      const { sunrise, sunset } = sunTimes(net, LAT, LON);
+      return net.getTime() >= (sunset.getTime() - bufferMs)
+          || net.getTime() <= (sunrise.getTime() + bufferMs);
+    };
+    const nightLaunches = florida.filter(l => isNightVisible(new Date(l.net)));
+    const hiddenDaytime = florida.length - nightLaunches.length;
+    const visible = nightLaunches.slice(0, 4);
+
+    // Imminent launch alert — if next visible launch is within 36 hours
+    const next = visible[0];
+    if (next) {
+      const net = new Date(next.net);
+      const msUntil = net.getTime() - Date.now();
+      const hoursUntil = msUntil / (1000 * 60 * 60);
+      if (msUntil > 0 && hoursUntil <= 36) {
+        const alertEl = document.getElementById('launch-alert');
+        const h = Math.floor(msUntil / (1000 * 60 * 60));
+        const m = Math.floor((msUntil / (1000 * 60)) % 60);
+        const untilStr = h === 0 ? `in ${m} min` : `in ${h}h ${m}m`;
+        const timeStr = net.toLocaleString('en-US', { weekday:'long', hour:'numeric', minute:'2-digit', timeZoneName:'short' });
+        const label = hoursUntil <= 6 ? 'Launch Imminent' : hoursUntil <= 24 ? 'Launch Tonight' : 'Launch Tomorrow';
+        document.getElementById('alert-label').textContent = label;
+        document.getElementById('alert-name').textContent = next.name || 'Upcoming Launch';
+        document.getElementById('alert-when').innerHTML = `${timeStr} &mdash; <span class="text-mb-accent-light font-bold">${untilStr}</span>`;
+        document.getElementById('alert-detail').textContent =
+          `${next.pad ? next.pad + ' · ' : ''}${next.location || ''} · Visible to the south-southwest from Masonboro on a clear night.`;
+        alertEl.classList.remove('hidden');
+      }
+    }
+
+    if (!visible.length) {
+      const note = hiddenDaytime
+        ? `No night launches in the current window. <span class="text-mb-cream/40 text-xs">(${hiddenDaytime} daytime Florida launch${hiddenDaytime>1?'es':''} not shown — poor visibility from Masonboro.)</span>`
+        : `No Florida launches in the current window. Check back.`;
+      content.innerHTML = `<p class="text-mb-cream/60 text-sm">${note}</p>`;
+      return;
+    }
+
+    content.innerHTML = visible.map(l => {
+      const net = new Date(l.net);
+      const daysAway = Math.ceil((net - Date.now()) / (1000*60*60*24));
+      const whenLabel = daysAway <= 0 ? 'TONIGHT' : daysAway === 1 ? 'TOMORROW' : `${daysAway} DAYS`;
+      const dateStr = net.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+      const timeStr = net.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit', timeZoneName:'short' });
+      const provider = l.lsp_name || '';
+      const pad = l.pad || '';
+      return `
+        <div class="launch-item">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-label text-[10px] font-bold uppercase tracking-[0.2em] text-mb-accent-light">${whenLabel}</span>
+                <span class="text-mb-cream/40 text-xs">&middot; ${dateStr}</span>
+                <span class="ml-auto font-label text-[9px] font-bold uppercase tracking-wider text-mb-good bg-mb-good/15 px-2 py-0.5 rounded">Night · Visible</span>
+              </div>
+              <h4 class="font-headline font-bold text-mb-cream mb-1 truncate">${l.name || 'Launch'}</h4>
+              <p class="text-mb-cream/50 text-xs">${provider}${pad ? ' · ' + pad : ''}</p>
+            </div>
+            <div class="text-right flex-shrink-0">
+              <div class="font-headline font-bold text-mb-cream text-sm">${timeStr}</div>
+            </div>
+          </div>
+        </div>`;
+    }).join('') + (hiddenDaytime ? `
+      <div class="mt-3 pt-3 border-t border-white/10 text-mb-cream/40 text-xs italic">
+        ${hiddenDaytime} daytime Florida launch${hiddenDaytime>1?'es':''} not shown (sun up at launch time — poor visibility from Masonboro).
+      </div>` : '');
+  } catch (e) {
+    content.innerHTML = `<p class="text-mb-cream/50 text-sm">Couldn't load launch schedule. <a href="https://nextspaceflight.com" target="_blank" rel="noopener" class="underline">Check nextspaceflight.com</a>.</p>`;
+  }
+}
+
+// ═══ EMAIL CAPTURE ═══
+async function submitEmail(e) {
+  e.preventDefault();
+  const form = e.target;
+  const input = form.querySelector('input[type="email"]');
+  const btn = form.querySelector('button[type="submit"]');
+  const status = document.getElementById('signup-status');
+  const email = input.value.trim();
+  if (!email) return false;
+  btn.disabled = true;
+  const orig = btn.textContent;
+  btn.textContent = 'Sending...';
+  status.textContent = '';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: '8ca6fa3e-a04a-4261-8937-e214a48f785f',
+        subject: 'MasonboroIsland.org — Signup: ' + email,
+        from_name: 'MasonboroIsland.org',
+        email: email,
+        message: 'New signup from masonboroisland.org: ' + email
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('signup-form-wrap').classList.add('hidden');
+      document.getElementById('signup-success').classList.remove('hidden');
+    } else {
+      btn.disabled = false;
+      btn.textContent = orig;
+      status.textContent = 'Something went wrong — try again.';
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = orig;
+    status.textContent = 'Network error — try again.';
+  }
+  return false;
+}
+
+// ═══ KICK OFF ALL LIVE FETCHES ═══
+loadTides();
+loadWeather();
+loadLaunches();
+</script>
+</body>
+</html>
