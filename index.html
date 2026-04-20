@@ -282,6 +282,7 @@ tailwind.config = {
     <div class="hidden md:flex items-center gap-8">
       <a href="#mainland" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">Before You Go</a>
       <a href="#crossing" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">The Crossing</a>
+      <a href="#safety" class="font-label text-[11px] uppercase tracking-[0.2em] transition-colors" style="color:#a03520;">Safety</a>
       <a href="#island" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">On the Island</a>
       <a href="#tonight" class="text-mb-ink-light hover:text-mb-dark font-label text-[11px] uppercase tracking-[0.2em] transition-colors">Tonight's Sky</a>
     </div>
@@ -292,6 +293,7 @@ tailwind.config = {
   <div id="mobile-menu" class="hidden md:hidden bg-mb-cream/95 backdrop-blur-xl border-t border-mb-paper px-6 pb-6 pt-4 space-y-4">
     <a href="#mainland" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">Before You Go</a>
     <a href="#crossing" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">The Crossing</a>
+    <a href="#safety" class="block font-bold font-label text-sm uppercase tracking-widest py-2" style="color:#a03520;">Safety</a>
     <a href="#island" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">On the Island</a>
     <a href="#tonight" class="block text-mb-ink-mid font-label text-sm uppercase tracking-widest py-2">Tonight's Sky</a>
   </div>
@@ -786,11 +788,14 @@ tailwind.config = {
           <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Drop-off service runs from several local operators. Best for families, overnights, or if you don't have a boat.</p>
           <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Pre-book &middot; weather-dependent</p>
         </div>
-        <div class="data-card">
-          <span class="material-symbols-outlined text-mb-sea text-2xl mb-3">surfing</span>
-          <h3 class="font-headline text-lg font-bold mb-2">Surfboard / Swim</h3>
-          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">Experienced only. Swim crossings happen but the ICW is a working channel with real boat traffic.</p>
-          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light">Know your limits</p>
+        <div class="data-card" style="border-color:#a03520;border-left:3px solid #a03520;">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="material-symbols-outlined text-mb-bad text-2xl">warning</span>
+            <span class="font-label text-[10px] font-bold uppercase tracking-[0.25em] text-mb-bad">Do Not Swim Across</span>
+          </div>
+          <h3 class="font-headline text-lg font-bold mb-2">The ICW Is Not a Swim Crossing</h3>
+          <p class="text-sm text-mb-ink-mid leading-relaxed mb-3">The Intracoastal Waterway is a federal shipping channel with fast tidal currents, cold water that can cause hypothermia, low-visibility chop, and constant boat traffic that cannot see or stop for a swimmer. People die attempting this every year on the NC coast.</p>
+          <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-bad font-bold">Use a kayak, board, or boat &mdash; always with a PFD.</p>
         </div>
       </div>
 
@@ -831,10 +836,121 @@ tailwind.config = {
             Cross perpendicular, cross quickly, and if you're in a kayak, cross between traffic &mdash; not in front of it.
           </p>
           <div class="pt-4 border-t border-mb-rule">
-            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-ink-light mb-1">Emergency</p>
-            <p class="text-sm text-mb-ink-mid">VHF Channel 16 for the Coast Guard. 911 works from most of the waterway.</p>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-bad font-bold mb-1">In an Emergency</p>
+            <p class="text-sm text-mb-ink-mid">Dial <strong>911</strong> &mdash; it routes to the U.S. Coast Guard for water emergencies. On a VHF radio, hail the Coast Guard on <strong>Channel 16</strong>. Give your position, the nature of the emergency, and how many people are with you.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SAFETY & EMERGENCY ══════════ -->
+  <section id="safety" class="relative scroll-mt-20" style="background:#2a1d15;color:#f5f0e8;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28 relative z-10">
+      <div class="mb-12 max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-mb-accent-light text-3xl">warning</span>
+          <span class="font-label text-mb-accent-light text-[11px] font-bold uppercase tracking-[0.3em]">Safety &amp; Emergency</span>
+        </div>
+        <h2 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05] mb-5">Read this before you go.</h2>
+        <p class="text-lg text-white/70 leading-relaxed">Masonboro Island is wild. There are no lifeguards, no rangers walking the beach, no bathrooms, and often no cell signal. People have been seriously hurt or killed on this stretch of coast. Most of it was avoidable.</p>
+      </div>
+
+      <!-- Emergency numbers -->
+      <div class="bg-white/5 border border-mb-accent-light/30 rounded-lg p-6 md:p-8 mb-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="material-symbols-outlined text-mb-accent-light text-2xl">emergency</span>
+          <span class="font-label text-[11px] font-bold uppercase tracking-[0.25em] text-mb-accent-light">If Something Goes Wrong</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-white/50 mb-1">Life-threatening</p>
+            <p class="font-headline text-3xl font-extrabold text-white mb-1">911</p>
+            <p class="text-white/60 text-sm leading-relaxed">Dispatcher routes to Coast Guard for water emergencies. Give your exact location &mdash; &ldquo;north end of Masonboro, swam/paddled from Trails End&rdquo; beats GPS coordinates you can't read off a dying phone.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-white/50 mb-1">Marine radio</p>
+            <p class="font-headline text-3xl font-extrabold text-white mb-1">VHF 16</p>
+            <p class="text-white/60 text-sm leading-relaxed">Standard distress and hailing channel for the U.S. Coast Guard. If you have a VHF radio on your boat, this is where you call for help. Nearby boats also monitor this channel.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-widest text-white/50 mb-1">Medical</p>
+            <p class="font-headline text-lg font-extrabold text-white mb-1">Novant NHRMC</p>
+            <p class="text-white/60 text-sm leading-relaxed">Novant Health New Hanover Regional Medical Center in Wilmington is the nearest Level II trauma hospital. For a real emergency, 911 will route you. Do not try to drive yourself after a serious injury.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Before You Go + When NOT to Go -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white/5 border border-white/10 rounded-lg p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-mb-accent-light">checklist</span>
+            <h3 class="font-headline text-lg font-extrabold">Before You Push Off</h3>
+          </div>
+          <ul class="space-y-3 text-white/75">
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Wear a PFD. Every person. The whole trip. NC law requires it on paddlecraft for kids under 13 &mdash; wear one anyway.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Tell someone your float plan: where you're launching, where you're going, who's with you, when you expect to be back.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Check the tide and weather within an hour of launch. Both change fast.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Phone in a dry bag, fully charged. Don't rely on cell signal &mdash; it drops out on the island.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Do not go alone. If something goes wrong, a second person is the difference between a scare and a search.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span class="text-mb-accent-light mt-0.5 flex-shrink-0">&mdash;</span>Know your skill level. The ICW eats beginner paddlers who misjudge the current. Start with shorter, calmer trips first.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white/5 border border-mb-bad/40 rounded-lg p-6 md:p-8">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined" style="color:#e88868;">block</span>
+            <h3 class="font-headline text-lg font-extrabold" style="color:#e88868;">When NOT to Go</h3>
+          </div>
+          <ul class="space-y-3 text-white/75">
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>Lightning anywhere nearby. Flat water + open sky + fiberglass paddle = worst place to be.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>Winds over 15 mph if you're paddling. The ICW gets choppy fast.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>Fog, heavy rain, or visibility under a quarter mile.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>Against an active storm or hurricane advisory. Check the weather card above.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>After drinking or using anything that affects judgment, balance, or reaction time.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>If you can't confidently swim 100 yards in open water without stopping.</li>
+            <li class="flex gap-3 text-sm leading-relaxed"><span style="color:#e88868;" class="mt-0.5 flex-shrink-0">&mdash;</span>First trip and going alone. Bring someone who's done it. Or don't go yet.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Specific hazards -->
+      <div class="bg-white/5 border border-white/10 rounded-lg p-6 md:p-8">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="material-symbols-outlined text-mb-accent-light">info</span>
+          <h3 class="font-headline text-lg font-extrabold">Specific Hazards Worth Knowing</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Rip Currents</p>
+            <p class="text-sm text-white/65 leading-relaxed">If caught in a rip on the ocean side, swim parallel to shore until you're out of it, then back in. Don't fight it head-on &mdash; you'll lose.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Tidal Currents in the ICW</p>
+            <p class="text-sm text-white/65 leading-relaxed">Can run 2&ndash;3 knots on a spring tide &mdash; faster than most people can paddle against. Plan to cross at slack tide.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Boat Traffic</p>
+            <p class="text-sm text-white/65 leading-relaxed">Large boats in the ICW cannot stop quickly and often don't see kayaks or swimmers. Cross at a right angle between boats, not in front of them.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Wildlife Keep-Distance</p>
+            <p class="text-sm text-white/65 leading-relaxed">Alligators, sea turtles, nesting shorebirds, sharks in the surf. Don't approach, don't feed, don't touch. Sea turtles and their nests are federally protected.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Hypothermia</p>
+            <p class="text-sm text-white/65 leading-relaxed">Winter and spring water temps (50&ndash;65&deg;F) can kill an unprepared swimmer in 30 minutes. Dress for the water temp, not the air.</p>
+          </div>
+          <div>
+            <p class="font-label text-[10px] uppercase tracking-[0.2em] text-mb-accent-light font-bold mb-1">Getting Stranded</p>
+            <p class="text-sm text-white/65 leading-relaxed">Incoming tide covers walkable shoreline fast. Don't hike down-island without a plan for getting back. Turn around earlier than feels necessary.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-white/50 text-xs italic">
+        The emergency information and hazard guidance on this page is general. Conditions change. Local knowledge beats any website. Check with a local outfitter, a ranger at the NC Coastal Reserve, or the U.S. Coast Guard before committing to a trip that's new to you.
       </div>
     </div>
   </section>
@@ -862,7 +978,7 @@ tailwind.config = {
             </div>
             <div class="fact-row">
               <div class="fact-key">Sea Turtles</div>
-              <div class="fact-val">Loggerheads nest May&ndash;August. Nest areas are fenced and staked. Never approach a nest or a turtle at night &mdash; use red-filtered light only.</div>
+              <div class="fact-val">Loggerheads nest May&ndash;August. Nests are fenced and staked &mdash; these are federally protected under the Endangered Species Act. Never approach a nest, never touch a turtle or egg, never shine white light near nests at night (disorients hatchlings). Use red-filtered light only. Report disturbance to NC Wildlife Resources Commission.</div>
             </div>
             <div class="fact-row">
               <div class="fact-key">Ghost Crabs</div>
@@ -870,7 +986,11 @@ tailwind.config = {
             </div>
             <div class="fact-row">
               <div class="fact-key">Alligators</div>
-              <div class="fact-val">Occasional in brackish ponds on the island interior. Give distance. They don't bother you if you don't bother them.</div>
+              <div class="fact-val"><strong>Give wide distance &mdash; at least 60 feet.</strong> Occasional in brackish ponds on the island interior. Never feed one (illegal in NC and makes them dangerous to the next person). Do not swim in inland ponds. If one hisses or opens its mouth at you, it's warning you &mdash; back away slowly.</div>
+            </div>
+            <div class="fact-row">
+              <div class="fact-key">Sharks (surf zone)</div>
+              <div class="fact-val">Bull sharks and blacktips are present in NC waters. Incidents are rare. Don't swim at dawn/dusk, don't swim alone, don't swim near bait schools or fishing piers, avoid shiny jewelry.</div>
             </div>
             <div class="fact-row">
               <div class="fact-key">Dolphins</div>
@@ -892,11 +1012,11 @@ tailwind.config = {
             </div>
             <div class="fact-row">
               <div class="fact-key">Surfing</div>
-              <div class="fact-val">Uncrowded breaks along the 8 miles of Atlantic shore. Best on south or east swell.</div>
+              <div class="fact-val">Uncrowded breaks along the 8 miles of Atlantic shore. Best on south or east swell. <strong>No lifeguards anywhere on Masonboro</strong> &mdash; surf with a buddy, know the rip-current forecast, and don't paddle out beyond your skill level.</div>
             </div>
             <div class="fact-row">
               <div class="fact-key">Walking</div>
-              <div class="fact-val">The whole island is walkable at low tide. Plan a route that doesn't maroon you at the far end.</div>
+              <div class="fact-val">The whole island is walkable at low tide. Plan a route that doesn't maroon you at the far end &mdash; the tide comes in faster than people expect, and the interior has soft sand, biting insects, and brackish ponds. Bring more water than you think.</div>
             </div>
             <div class="fact-row">
               <div class="fact-key">Camping</div>
@@ -904,7 +1024,7 @@ tailwind.config = {
             </div>
             <div class="fact-row">
               <div class="fact-key">Night Sky</div>
-              <div class="fact-val">One of the darker coastal stretches in the region. Rocket launches and meteor showers are genuinely worth the night trip. See the section below.</div>
+              <div class="fact-val">One of the darker coastal stretches in the region. Rocket launches and meteor showers are genuinely worth the night trip. <strong>A night trip is a different risk profile:</strong> visibility is poor, water is colder, boat traffic is still active, and rescue response takes longer. Go with someone experienced, bring working headlamps for each person, and file a detailed float plan.</div>
             </div>
           </div>
         </div>
@@ -1073,9 +1193,14 @@ tailwind.config = {
       </ul>
     </div>
   </div>
-  <p class="max-w-5xl mx-auto px-6 md:px-8 mt-12 pt-6 border-t border-white/10 font-label text-[10px] uppercase tracking-widest text-white/25">
-    &copy; 2026 Masonboro Island Coastal Field Station &middot; A field project by <a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 hover:text-white">Mozy Outdoors</a>
-  </p>
+  <div class="max-w-5xl mx-auto px-6 md:px-8 mt-12 pt-6 border-t border-white/10">
+    <p class="text-white/50 text-xs leading-relaxed mb-4">
+      <strong class="text-white/70">Important.</strong> This site is an informational field guide, not professional advice or a substitute for personal judgment. Ocean and waterway conditions change constantly &mdash; the live data shown here is a starting point, not a guarantee. You are responsible for your own safety and the safety of your party. Do not attempt any crossing, activity, or overnight trip beyond your skill, experience, or physical condition. Always wear a PFD on the water. Always tell someone your plan. In an emergency, dial <strong class="text-white/70">911</strong> or hail the U.S. Coast Guard on <strong class="text-white/70">VHF Channel 16</strong>. By using this site you acknowledge that MasonboroIsland.org, Mozy Outdoors, and contributors assume no liability for decisions you make with the information here.
+    </p>
+    <p class="font-label text-[10px] uppercase tracking-widest text-white/25">
+      &copy; 2026 Masonboro Island Coastal Field Station &middot; A field project by <a href="https://mozyoutdoors.com" target="_blank" rel="noopener" class="text-white/50 hover:text-white">Mozy Outdoors</a>
+    </p>
+  </div>
 </footer>
 
 <!-- ══════════ SCRIPTS ══════════ -->
